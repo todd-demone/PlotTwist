@@ -18,11 +18,11 @@ app.get('/login/:id', (req, res) => {
 ```
 
 ## Stories
-* B  GET     /stories
-* R  GET     /stories/:id
-* E  PATCH   /stories/:id
-* A  POST    /stories
-* D  DELETE  /stories/:id
+* B ->    GET     /stories
+* R ->    GET     /stories/:id
+* E ->    PATCH   /stories/:id
+* A ->    POST    /stories
+* D ->    DELETE  /stories/:id
 
 ## Contributions
 
