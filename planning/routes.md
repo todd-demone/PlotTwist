@@ -12,12 +12,12 @@
 | Person  | Description of action | Route |
 | ------------- | ------------- | ------------- |
 | User | get all stories - can be filtered by keyword (search story titles) | GET /stories |
-| User | get a single story | GET /stories/:id |
+| User | get a single story (returns all contributions that have story_id === req.params.id) | GET /stories/:id |
 | OP | mark a story completed | PATCH /stories/:id |
 | OP  | submit a story  | POST /stories |
 | OP | delete a story | DELETE /stories/:id |
 ||||
-| User | get all contributions - can be filtered by keyword (search text of contributions) | GET /contributions|
+| User | get all contributions - filtered by keyword (search text of contributions) | GET /contributions|
 | User, OP | (user) edit a contribution, (OP) accept a contribution | PATCH /contributions/:id |
 | User | submit a contribution  | POST /contributions |
 | User | delete a contribution | DELETE /contributions/:id |
