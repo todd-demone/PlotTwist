@@ -6,7 +6,7 @@
 * CRUD: create, read, update, delete
 
 ## Users
-R  GET     /users/:id
+R ->      GET     /users/:id
 
 * For login, use the following code:
 
