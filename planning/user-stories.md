@@ -2,22 +2,21 @@
 
 As a ___, I can ___, because ____
 
-1. As a creator, I can start a story because I want to write a fun story and see where the user community will take it.
-
-2. As a user, I can submit a contribution to an existing story because I have a great idea of where this story should go.
-
-3. As a user, I can upvote a (potential) contribution because I like it.
-
-4. As a user, I can see all of the upvotes for a particular contribution because it's interesting to see what the community finds appealing.
-
-5. As a creator, I can accept a contribution because I think it's the best one.
-
-6. As a creator, I can mark the story completed, because I'm satisfied with the result. 
-
-7. As a User, I can view a list of stories on my homepage, because I want to browse/read or contribute.
-
-8. As a user , I cannot add to a completed story, because the creator has marked it completed.
-
-9. As a user, I can read a story, because I enjoy reading stories
-
-10. As a creator, I can contribute to the story because I have an idea.
+| Person  | Action | Rationale |
+| ------------- | ------------- | ------------- |
+| User | see latest/top stories | want to read/contribute to new/interesting stories. |
+| User | search for stories based on a keyword in title | want to find stories containing a certain word in title. |
+| User | view a story | want to read a story. |
+| OP | mark story completed | satisfied with the result. |
+| OP  | create story  | want to write a fun story and see where the community will take it. |
+| OP | delete story | no longer interested/ don't like where it's going. |
+| User | search for contributions based on a word used in text| want to find stories containing a certain word in text body.|
+| User | view a user's profile | want to look at my/ other person's story and contribution history. |
+| User | edit my contribution | thought of a better idea. |
+| OP | accept contribution | think it's the best one. |
+| User | add a contribution  | have a great idea of where story should go. |
+| User | delete my contribution | no longer satisfied with my contribution. |
+| User | cannot contribute to completed story | OP has already marked it completed. |
+| User | vote for a contribution | I like it. |
+| User | change my vote for a contribution | changed my mind. |
+| User | see total votes for contribution | interesting to see what community finds appealing. |
