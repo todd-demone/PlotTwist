@@ -8,52 +8,32 @@
 * BREAD: browse, read, edit, add, delete
 * CRUD: create, read, update, delete
 
-## Routes
+## Stories
 | Person  | Description | HTTP request | Comments |
 | ----- | ----- | ----- | ----- |
-| User | get all stories  | GET /stories | Can be filtered by keywords in story title |
-| User | get a single story | GET /stories/:id | Gets 
-| OP | change story title | PATCH /stories/:id |
-| OP | mark story completed | PATCH /stories/:id |
-| OP | remove a story | PATCH /stories/:id | Replaces contribution text with word 'deleted', change is_complete to true|
-| OP  | submit a new story  | POST /stories |
-||||
-| User | get all contributions | GET /contributions | Can be filtered by keywords in text |
-| User | edit a contribution | PATCH /contributions/:id |
-| OP | accept a contribution | PATCH /contributions/:id |
-| User | remove a contribution | PATCH /contributions/:id | Replaces contribution text with word 'deleted'|
-| User | submit a contribution  | POST /contributions |
-||||
-| User | vote for a contribution | POST /votes |
-| User | delete a vote for a contribution | DELETE votes/:id |
-||||
-| User | view a user's profile | GET /users/:id |
-||||
-| User | login | GET /login/:id |
-
-## Login
-For login, use the following code:
-```javascript
-app.get('/login/:id', (req, res) => {
-  req.session.user_id = req.params.id;
-  res.redirect('/');
-});
-```
-
-## Stories
-* B ->    GET     /stories
-* R ->    GET     /stories/:id
-* E ->    PATCH   /stories/:id
-* A ->    POST    /stories
-* D ->    DELETE  /stories/:id
-
+| User | get all stories  | GET /api/stories | Can be filtered by keywords in story title |
+| User | get a story | GET /api/stories/:id | 
+| OP  | post a story  | POST /api/stories |
+| OP | delete a story | PUT /stories/:id/delete | Replaces value in `contributions.text` with string 'deleted', change `stories.is_complete` to `true`|
+| OP | change story title | PUT /api/stories/:id/changetitle |
+| OP | mark story complete | PUT /api/stories/:id/markcomplete |
 ## Contributions
-* B ->    GET     /contributions --SAME AS STORIES?
-* R ->    GET     /contributions/:id --SAME AS STORIES?
-* A ->    POST    /contributions
-* D ->    DELETE  /contributions/:id
+| Person  | Description | HTTP request | Comments |
+| ----- | ----- | ----- | ----- |
+|User | get user's contributions | GET /api/contributions/user/:user_id | |
+| User | post a contribution  | POST /api/contributions |
+| User | delete a contribution | PUT /api/contributions/:id/delete | Replaces value in `text` field with string 'deleted'|
+| User | edit a contribution | PUT /api/contributions/:id |
+| OP | accept a contribution | PUT /api/contributions/:id/markaccepted | |
 
 ## Votes
-* R ->    GET     /votes/:id
-* A ->    POST    /votes
-* D ->    DELETE  /votes/:id
+| Person  | Description | HTTP request | Comments |
+| ----- | ----- | ----- | ----- |
+| User | get the total number of votes for a contribution | GET /api/votes/contribution/:contribution_id | |
+| User | vote for contribution | POST /api/votes ||
+| User | delete a vote | PUT /api/votes/:id | sets `active` field to false |
+
+## Login
+| Person  | Description | HTTP request | Comments |
+| ----- | ----- | ----- | ----- |
+| User | login to account | GET /login/:id | |
