@@ -9,18 +9,20 @@
 * CRUD: create, read, update, delete
 
 ## Routes
-| Person  | Description of action | Route |
-| ------------- | ------------- | ------------- |
-| User | get all stories - can be filtered by keyword (search story titles) | GET /stories |
-| User | get a single story | GET /stories/:id |
-| OP | mark a story completed | PATCH /stories/:id |
-| OP  | submit a story  | POST /stories |
-| OP | delete a story | DELETE /stories/:id |
+| Person  | Description | HTTP request | Comments |
+| ----- | ----- | ----- | ----- |
+| User | get all stories  | GET /stories | Can be filtered by keywords in story title |
+| User | get a single story | GET /stories/:id | Gets 
+| OP | change story title | PATCH /stories/:id |
+| OP | mark story completed | PATCH /stories/:id |
+| OP | remove a story | PATCH /stories/:id | Replaces contribution text with word 'deleted', change is_complete to true|
+| OP  | submit a new story  | POST /stories |
 ||||
-| User | get all contributions - can be filtered by keyword (search text of contributions) | GET /contributions|
-| User, OP | (user) edit a contribution, (OP) accept a contribution | PATCH /contributions/:id |
+| User | get all contributions | GET /contributions | Can be filtered by keywords in text |
+| User | edit a contribution | PATCH /contributions/:id |
+| OP | accept a contribution | PATCH /contributions/:id |
+| User | remove a contribution | PATCH /contributions/:id | Replaces contribution text with word 'deleted'|
 | User | submit a contribution  | POST /contributions |
-| User | delete a contribution | DELETE /contributions/:id |
 ||||
 | User | vote for a contribution | POST /votes |
 | User | delete a vote for a contribution | DELETE votes/:id |
