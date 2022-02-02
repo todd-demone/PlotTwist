@@ -25,5 +25,12 @@ app.get('/login/:id', (req, res) => {
 * D ->    DELETE  /stories/:id
 
 ## Contributions
+* B ->    GET     /contributions --SAME AS STORIES?
+* R ->    GET     /contributions/:id --SAME AS STORIES?
+* A ->    POST    /contributions
+* D ->    DELETE  /contributions/:id
 
 ## Votes
+* R ->    GET     /votes/:id
+* A ->    POST    /votes
+* D ->    DELETE  /votes/:id
