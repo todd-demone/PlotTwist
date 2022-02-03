@@ -9,7 +9,7 @@ module.exports = (db) => {
     const queryString = `
       SELECT *
       FROM stories
-      ORDER BY id ASC
+      ORDER BY id DESC
       LIMIT $1;
     `;
     const queryParams = [limit];
@@ -52,7 +52,8 @@ module.exports = (db) => {
     const queryString = `
       SELECT * 
       FROM stories
-      WHERE user_id = $1;
+      WHERE user_id = $1
+      ORDER BY id DESC;
     `;
     const queryParams = [user_id];
     db.query(queryString, queryParams)
