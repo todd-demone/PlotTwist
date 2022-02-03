@@ -9,31 +9,33 @@
 * CRUD: create, read, update, delete
 
 ## Stories
-| Person  | Description | HTTP request | Comments |
-| ----- | ----- | ----- | ----- |
-| User | get all stories  | GET /api/stories | Can be filtered by keywords in story title |
-| User | get a story | GET /api/stories/:id | 
-| OP  | post a story  | POST /api/stories |
-| OP | delete a story | PUT /stories/:id/delete | Replaces value in `contributions.text` with string 'deleted', change `stories.is_complete` to `true`|
-| OP | change story title | PUT /api/stories/:id/changetitle |
-| OP | mark story complete | PUT /api/stories/:id/markcomplete |
+| Person  | Description | HTTP request | 
+| ----- | ----- | ----- |
+| User | get all stories  | GET /api/stories |
+| User | get story | GET /api/stories/:id |
+|User | get user's stories | GET /api/stories/user/:user_id |
+| OP  | post story  | POST /api/stories |
+| OP | "delete" story (wipe text) | PUT /stories/:id/delete | 
+| OP | edit story | PUT /api/stories/:id/edit |
+| OP | mark story completed | PUT /api/stories/:id/completed |
 ## Contributions
-| Person  | Description | HTTP request | Comments |
-| ----- | ----- | ----- | ----- |
-|User | get user's contributions | GET /api/contributions/user/:user_id | |
-| User | post a contribution  | POST /api/contributions |
-| User | delete a contribution | PUT /api/contributions/:id/delete | Replaces value in `text` field with string 'deleted'|
+| Person  | Description | HTTP request | 
+| ----- | ----- | ----- |
+| User | get all contributions for a story | GET /api/contributions/story/:story_id |
+|User | get user's contributions | GET /api/contributions/user/:user_id |
+| User | post contribution  | POST /api/contributions |
+| User | delete contribution (wipe text) | PUT /api/contributions/:id/delete | 
 | User | edit a contribution | PUT /api/contributions/:id |
-| OP | accept a contribution | PUT /api/contributions/:id/markaccepted | |
+| OP | accept a contribution | PUT /api/contributions/:id/markaccepted |
 
 ## Votes
-| Person  | Description | HTTP request | Comments |
-| ----- | ----- | ----- | ----- |
-| User | get the total number of votes for a contribution | GET /api/votes/contribution/:contribution_id | |
-| User | vote for contribution | POST /api/votes ||
+| Person  | Description | HTTP request | 
+| ----- | ----- | ----- |
+| User | get the total number of votes for a contribution | GET /api/votes/contribution/:contribution_id |
+| User | vote for contribution | POST /api/votes |
 | User | delete a vote | PUT /api/votes/:id | sets `active` field to false |
 
 ## Login
-| Person  | Description | HTTP request | Comments |
-| ----- | ----- | ----- | ----- |
-| User | login to account | GET /login/:id | |
+| Person  | Description | HTTP request | 
+| ----- | ----- | ----- |
+| User | login to account | GET /login/:id |
