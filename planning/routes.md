@@ -14,7 +14,6 @@
 | get top-level contributions  | GET /api/contributions/alltoplevel | for home page|
 | get top-level contrib plus accepted contribs for a single story  | GET /api/contributions/story/:story_id/accepted | the merged portion of a story
 | get unaccepted contribs for a single story  | GET /api/contributions/story/:story_id/unaccepted | the non-merged portion of a story
-| post a top-level contribution  | POST /api/contributions/toplevel | two INSERT statements
 | post contribution  | POST /api/contributions |
 | accept a contribution | PUT /api/contributions/:id/markaccepted |
 | edit a contribution | PUT /api/contributions/:id |
@@ -25,6 +24,7 @@
 ## Stories
 | Description | HTTP request | Comments |
 | ----- | ----- | ----- |
+| post a story  | POST /api/contributions/toplevel | on frontend, after this call, grab the returned story.story_id and use it to call POST /api/contributions (to add it to contribs table) 
 | mark story completed | PUT /api/stories/:id/completed |
 | get total contributions to a story| GET /api/stories/:id/totalcontributions|
 
