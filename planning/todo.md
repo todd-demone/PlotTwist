@@ -33,7 +33,7 @@
   * need to add SQL query to get contributions in 'thread' order
 * new route - PUT /api/contributions/:id/markaccepted
   * add 2 constraints (user must be OP, contrib must be at correct depth/working level) 
-* incorporate GET total # votes for a contribution into the GET contribution routes
+* incorporate "GET total # votes for a contribution" language into all "GET contributions" routes
 * change all contribution queries containing 'where active = true/false'
 * add conditionals (search filters) for GET contribution routes (nice to have)?
 * add route - edit contribution (PUT) (nice to have)
