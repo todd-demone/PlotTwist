@@ -22,8 +22,10 @@
 #### General notes
 * (done) ND - amend response for POST routes - `res.status(201).send()`
 * (done) ND - amend response for PUT routes - `res.status(200).send()`
-* TD - Global change of 'creator_id' to 'author_id'
-* TD - Global change of 'working_level' to 'level'
+* (Done) TD - Global change of 'creator_id' to 'author_id'
+* (Done) TD - Global change of 'working_level' to 'level'
+* (Done) TD - global change of 'contribution' to 'twist'
+* (Done) TD - mass change user_id to author_id
 
 #### Putting the OP's story in Stories vs putting it in Contributions
 * Stories pros:
@@ -36,27 +38,28 @@
     * all text submissions almost identical same, some just have a title
 * Contribution cons:
     * POST
+
 #### Stories routes
-* (Done) move most routes to routes/contributions.js
+* (Done) TD - move some routes to routes/contributions.js
+* (Done) TD - move routes back to routes/stories.js
 
 #### Contributions routes
-* TD - make POST /contributions set accepted as true when user_id = stories.user_id (maybe separate route for OP?)
-* (done) ND - incorporate "GET total # votes for a contribution" language into all "GET contributions" routes
-* (done) ND - change delete vote to an actual router.delete(...)
-* (done) ND - new route - PUT /api/contributions/:id/markaccepted
-  * add constraints - user must be OP 
-  * contrib must be at correct depth - deal with on frontend - accept button only visible if level hasn't been accepted
-* (done ND) remove `where active = true` from `GET /api/contributions/user/:user_id`
+* PUT ...accepted - contrib must be at correct depth - deal with on frontend - accept button only visible if level hasn't been accepted
 * TD - amend route - get unaccepted contribs for a single story
   * need to add SQL query to get contributions in 'thread' order
-  * deal with on frontend?
 * add conditionals (search filters) for  (nice to have)?
 * add route - edit contribution (PUT) (nice to have)
 * add route - GET total contributions for a story (nice to have)
 * (Done) new route - get top-level contributions 
 * (Done) new route - get top-level contrib plus accepted contribs for a single story
+* (done) ND - incorporate "GET total # votes for a contribution" language into all "GET contributions" routes
+* (done) ND - change delete vote to an actual router.delete(...)
+* (done) ND - new route - PUT /api/contributions/:id/markaccepted
+  * (done) TD - add constraints - user must be OP 
+* (done ND) remove `where active = true` from `GET /api/contributions/user/:user_id`
 
 ## Schema
+* Done
 
 ## Seeds
 * ND and TD - find opening lines
