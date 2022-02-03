@@ -50,7 +50,7 @@
 ## Test db and routes
 
 ## Server.js
-* TD - remove line referring to `ejs`
-* remove index route
-* install cookie-session, add require cookie-session and use cookie-session statements
-* use express.json()?
+* TD (Done) - remove line referring to `ejs`
+* (Done) remove index route
+* (Done) install cookie-session, add require cookie-session and use cookie-session statements
+* (Done) use express.json()
