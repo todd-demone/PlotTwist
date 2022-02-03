@@ -20,8 +20,8 @@
 ## Routes
 
 #### General notes
-* ND - amend response for POST routes - `res.status(201).send()`
-* ND - amend response for PUT routes - `res.status(200).send()`
+* (done) ND - amend response for POST routes - `res.status(201).send()`
+* (done) ND - amend response for PUT routes - `res.status(200).send()`
 * TD - Global change of 'creator_id' to 'author_id'
 * TD - Global change of 'working_level' to 'level'
 
@@ -29,12 +29,12 @@
 * (Done) move most routes to routes/contributions.js
 
 #### Contributions routes
-* ND - incorporate "GET total # votes for a contribution" language into all "GET contributions" routes
-* ND - change delete vote to an actual router.delete(...)
-* ND - new route - PUT /api/contributions/:id/markaccepted
+* (done) ND - incorporate "GET total # votes for a contribution" language into all "GET contributions" routes
+* (done) ND - change delete vote to an actual router.delete(...)
+* (done) ND - new route - PUT /api/contributions/:id/markaccepted
   * add constraints - user must be OP 
   * contrib must be at correct depth - deal with on frontend - accept button only visible if level hasn't been accepted
-* remove `where active = true` from `GET /api/contributions/user/:user_id`
+* (done ND) remove `where active = true` from `GET /api/contributions/user/:user_id`
 * TD - amend route - get unaccepted contribs for a single story
   * need to add SQL query to get contributions in 'thread' order
   * deal with on frontend?
