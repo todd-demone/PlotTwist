@@ -8,52 +8,34 @@
 * BREAD: browse, read, edit, add, delete
 * CRUD: create, read, update, delete
 
-## Routes
-| Person  | Description | HTTP request | Comments |
-| ----- | ----- | ----- | ----- |
-| User | get all stories  | GET /stories | Can be filtered by keywords in story title |
-| User | get a single story | GET /stories/:id | Gets 
-| OP | change story title | PATCH /stories/:id |
-| OP | mark story completed | PATCH /stories/:id |
-| OP | remove a story | PATCH /stories/:id | Replaces contribution text with word 'deleted', change is_complete to true|
-| OP  | submit a new story  | POST /stories |
-||||
-| User | get all contributions | GET /contributions | Can be filtered by keywords in text |
-| User | edit a contribution | PATCH /contributions/:id |
-| OP | accept a contribution | PATCH /contributions/:id |
-| User | remove a contribution | PATCH /contributions/:id | Replaces contribution text with word 'deleted'|
-| User | submit a contribution  | POST /contributions |
-||||
-| User | vote for a contribution | POST /votes |
-| User | delete a vote for a contribution | DELETE votes/:id |
-||||
-| User | view a user's profile | GET /users/:id |
-||||
-| User | login | GET /login/:id |
-
-## Login
-For login, use the following code:
-```javascript
-app.get('/login/:id', (req, res) => {
-  req.session.user_id = req.params.id;
-  res.redirect('/');
-});
-```
+## Contributions
+| Description | HTTP request | Comments
+| ----- | ----- | ----- |
+| get top-level contributions  | GET /api/contributions/alltoplevel | for home page|
+| get top-level contrib plus accepted contribs for a single story  | GET /api/contributions/story/:story_id/accepted | the merged portion of a story
+| get unaccepted contribs for a single story  | GET /api/contributions/story/:story_id/unaccepted | the non-merged portion of a story
+| post contribution  | POST /api/contributions |
+| accept a contribution | PUT /api/contributions/:id/markaccepted |
+| edit a contribution | PUT /api/contributions/:id |
+| delete contribution (wipe text) | PUT /api/contributions/:id/delete | 
+| get user's contributions | GET /api/contributions/user/:user_id |
+<!-- | User | get all contributions for a story | GET /api/contributions/story/:story_id | -->
 
 ## Stories
-* B ->    GET     /stories
-* R ->    GET     /stories/:id
-* E ->    PATCH   /stories/:id
-* A ->    POST    /stories
-* D ->    DELETE  /stories/:id
-
-## Contributions
-* B ->    GET     /contributions --SAME AS STORIES?
-* R ->    GET     /contributions/:id --SAME AS STORIES?
-* A ->    POST    /contributions
-* D ->    DELETE  /contributions/:id
+| Description | HTTP request | Comments |
+| ----- | ----- | ----- |
+| post a story  | POST /api/contributions/toplevel | on frontend, after this call, grab the returned story.story_id and use it to call POST /api/contributions (to add it to contribs table) 
+| mark story completed | PUT /api/stories/:id/completed |
+| get total contributions to a story| GET /api/stories/:id/totalcontributions|
 
 ## Votes
-* R ->    GET     /votes/:id
-* A ->    POST    /votes
-* D ->    DELETE  /votes/:id
+| Person  | Description | HTTP request | Comments |
+| ----- | ----- | ----- | ----- |
+| User | get the total number of votes for a contribution | GET /api/votes/contribution/:contribution_id |
+| User | vote for contribution | POST /api/votes |
+| User | delete a vote | PUT /api/votes/:id | sets `active` field to false |
+
+## Login
+| Person  | Description | HTTP request | 
+| ----- | ----- | ----- |
+| User | login to account | GET /login/:id |
