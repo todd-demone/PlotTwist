@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = (db) => {
 
-  // GET all stories
+  // GET ALL STORIES
   router.get("/", (req, res) => {
     const limit = 10;
     const queryString = `
@@ -25,7 +25,7 @@ module.exports = (db) => {
       });
   });
 
-  // GET a story
+  // GET STORY
   router.get("/:id", (req, res) => {
     const { id } = req.params;
     const queryString = `
@@ -46,36 +46,68 @@ module.exports = (db) => {
       });
   });
 
-  // POST a story
+  // GET USER'S STORIES
+  router.get("/user/:user_id", (req, res) => {
+    const { user_id } = req.params;
+    const queryString = `
+      SELECT * 
+      FROM stories
+      WHERE user_id = $1;
+    `;
+    const queryParams = [user_id];
+    db.query(queryString, queryParams)
+      .then(data => {
+        const stories = data.rows;
+        res.json({ stories });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+  
+  // POST STORY
   router.post("/", (req, res) => {
-    const { creator_id } = req.session.user_id;
+    const { user_id } = req.session;
     const { title, text } = req.body;
-    let queryString = `
+    const queryString = `
       INSERT INTO stories
-      (creator_id, title)
+      (user_id, title, text)
       VALUES ($1, $2, $3)
       RETURNING *;
     `;
-    let queryParams = [creator_id, title, text];
-    
-    const story = db.query(queryString, queryParams).then(data => data.rows[0]);
+    const queryParams = [user_id, title, text];
+    db.query(queryString, queryParams)  
+    .then(data => { 
+      res
+      .status(201)
+      .send();
+    }) 
+    .catch(err => {
+      res
+      .status(500)
+      .json({ error: err.message });
+    });
+  });
 
-    queryString = `
-      INSERT INTO contributions
-      (user_id, story_id, parent_id, working_level, text)
-      VALUES ($1, $2, $3, $4, $5)
+  // EDIT STORY
+  router.put("/:id/edit", (req, res) => {
+    const { title, text } = req.body;
+    const { id } = req.params;
+    const { user_id } = req.session;
+    const queryString = `
+      UPDATE stories
+      SET title = $1, text = $2
+      WHERE id = $3 AND user_id = $4
       RETURNING *;
     `;
-    const user_id = story.creator_id;
-    const story_id = story.id;
-    const parent_id = null;
-    const working_level = 0;
-    queryParams = [user_id, story_id, parent_id, working_level, text];
-    
-    db.query(queryString, queryParams)  
+    const queryParams = [title, text, id, user_id];
+    db.query(queryString, queryParams)
       .then(data => {
-        const contribution = data.rows[0];
-        res.redirect(`/api/stories/${contribution.story_id}`);; 
+        res
+          .status(200)
+          .send();
       })
       .catch(err => {
         res
@@ -84,44 +116,22 @@ module.exports = (db) => {
       });
   });
 
-  // Delete a story
+  // "DELETE" STORY
   router.put("/:id/delete", (req, res) => {
     const { id } = req.params;
-    const queryString = `
-      UPDATE stories
-      SET is_complete = true
-      WHERE ID = $1
-      RETURNING *;
-    `;
-    const queryParams = [id];
-    db.query(queryString, queryParams)
-      .then(data => {
-
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
-
-  // Change story title
-  router.put("/:id/changetitle", (req, res) => {
-    // check if user has permission to edit story title
     const { user_id } = req.session;
-    const { id } = req.params;
-    const { title } = req.body;
     const queryString = `
       UPDATE stories
-      SET title = $1
-      WHERE id = $2
+      SET completed = true
+      WHERE id = $1 AND user_id = $2 
       RETURNING *;
     `;
-    const queryParams = [title, id];
+    const queryParams = [id, user_id];
     db.query(queryString, queryParams)
       .then(data => {
-        const story = data.rows[0];
-        res.json({ story });
+        res
+          .status(200)
+          .send();
       })
       .catch(err => {
         res
@@ -130,22 +140,23 @@ module.exports = (db) => {
       });
   });
 
-  // Mark story complete
-  router.put("/:id/markcomplete", (req, res) => {
+  // MARK STORY COMPLETED
+  router.put("/:id/completed", (req, res) => {
     // check if user has permission to edit story title
-    const creator_id = req.session.user_id;
     const { id } = req.params;
+    const { user_id } = req.session;
     const queryString = `
       UPDATE stories 
-      SET is_complete = true 
-      WHERE id = $1
+      SET completed = true 
+      WHERE id = $1 and user_id = $2
       RETURNING *;
     `;
-    const queryParams = [id];
+    const queryParams = [id, user_id];
     db.query(queryString, queryParams)
       .then(data => {
-        const story = data.rows[0];
-        res.json({ story });
+        res
+          .status(200)
+          .send();
       })
       .catch(err => {
         res
