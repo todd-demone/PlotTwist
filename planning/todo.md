@@ -29,14 +29,14 @@
 #### Contributions routes
 * (Done) new route - get top-level contributions 
 * (Done) new route - get top-level contrib plus accepted contribs for a single story
-* new route - get unaccepted contribs for a single story
+* amend route - get unaccepted contribs for a single story
   * need to add SQL query to get contributions in 'thread' order
-* amend route - PUT ../:id/markaccepted
+* new route - PUT /api/contributions/:id/markaccepted
   * add 2 constraints (user must be OP, contrib must be at correct depth/working level) 
 * incorporate GET total # votes for a contribution into the GET contribution routes
 * change all contribution queries containing 'where active = true/false'
-* add conditionals for GET contribution routes (nice to have)?
-* get conditionals for edits (nice to have)?
+* add conditionals (search filters) for GET contribution routes (nice to have)?
+* add route - edit contribution (PUT) (nice to have)
 * add route - GET total contributions for a story (nice to have)
 
 ## Schema
