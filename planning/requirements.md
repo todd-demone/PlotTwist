@@ -13,8 +13,14 @@ An app that lets you write a story and lets other people contribute to that stor
 * users cannot add to a completed story
 * users can read a story
 
-## Possible additional features:
-* user will receive notification of acceptance/rejection of their contribution, e.g., via a banner following successful login, or via email
-* users can follow a story
-* users can downvote a contribution
-* users can "tag" a post (e.g., "sci-fi") as a way of grouping related posts together
+## Optional features:
+* users can: 
+  * edit contributions
+  * search contributions
+  * search stories by title
+  * view user's profile page with recent stories and contributions
+  * view the total number of contributions for a story
+  * follow a story
+  * downvote a contribution
+  * "tag" a post (e.g., "sci-fi") as a way of grouping related posts together
+* app notifies user of acceptance/rejection of a contribution, e.g., via a banner following successful login, or via email
