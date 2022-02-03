@@ -37,6 +37,7 @@
 * change all contribution queries containing 'where active = true/false'
 * add conditionals for GET contribution routes (nice to have)?
 * get conditionals for edits (nice to have)?
+* add route - GET total contributions for a story (nice to have)
 
 ## Schema
 
