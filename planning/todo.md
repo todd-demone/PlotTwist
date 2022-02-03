@@ -20,24 +20,24 @@
 ## Routes
 
 #### General notes
-* response for POST routes - `res.status(201).send()`
-* response for PUT routes - `res.status(200).send()`
+* amend response for POST routes - `res.status(201).send()`
+* amend response for PUT routes - `res.status(200).send()`
 
 #### Stories routes
 * (Done) move most routes to routes/contributions.js
 
 #### Contributions routes
-* (Done) new route - get top-level contributions 
-* (Done) new route - get top-level contrib plus accepted contribs for a single story
-* amend route - get unaccepted contribs for a single story
-  * need to add SQL query to get contributions in 'thread' order
+* incorporate "GET total # votes for a contribution" language into all "GET contributions" routes
 * new route - PUT /api/contributions/:id/markaccepted
   * add 2 constraints (user must be OP, contrib must be at correct depth/working level) 
-* incorporate "GET total # votes for a contribution" language into all "GET contributions" routes
-* change all contribution queries containing 'where active = true/false'
-* add conditionals (search filters) for GET contribution routes (nice to have)?
+* remove `where active = true` from `GET /api/contributions/user/:user_id`
+* amend route - get unaccepted contribs for a single story
+  * need to add SQL query to get contributions in 'thread' order
+* add conditionals (search filters) for  (nice to have)?
 * add route - edit contribution (PUT) (nice to have)
 * add route - GET total contributions for a story (nice to have)
+* (Done) new route - get top-level contributions 
+* (Done) new route - get top-level contrib plus accepted contribs for a single story
 
 ## Schema
 
