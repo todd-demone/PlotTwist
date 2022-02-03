@@ -13,13 +13,13 @@ module.exports = (db) => {
     const { user_id } = req.params;
 
     const queryString = `
-    SELECT contributions.*, count(votes) AS number_of_votes, stories.title AS story_title
-    FROM contributions
-    JOIN votes ON contributions.id = votes.contribution_id
-    JOIN stories ON stories.id = story_id
-    GROUP BY contributions.id
-    WHERE user_id = $1
-    ORDER BY date_created, story_id;
+      SELECT contributions.*, count(votes) AS number_of_votes, stories.title AS story_title
+      FROM contributions
+      JOIN votes ON contributions.id = votes.contribution_id
+      JOIN stories ON stories.id = story_id
+      GROUP BY contributions.id
+      WHERE user_id = $1
+      ORDER BY date_created, story_id;
     `;
 
     const queryParams = [user_id];
@@ -123,6 +123,7 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     const { user_id } = req.session;
     const { story_id, parent_id, working_level, text } = req.body
+    // WHERE $6 = stories.user_id contributions.accepted = true
     const queryString = `
       INSERT INTO contributions (user_id, story_id, parent_id, working_level, text)
       VALUES ($1, $2, $3, $4, $5)

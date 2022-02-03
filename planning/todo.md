@@ -25,10 +25,22 @@
 * TD - Global change of 'creator_id' to 'author_id'
 * TD - Global change of 'working_level' to 'level'
 
+#### Putting the OP's story in Stories vs putting it in Contributions
+* Stories pros:
+    * Purity - the story is encapsulated in a single table - the table represents an entity
+    * Single POST route (no need to call POST /stories and POST /contributions)
+* Stories cons:
+    * In order to render a story page, may need to make 3 requests since it's : GET story, GET accepted (order by level), GET unaccepted (order by thread) 
+* Contributions pros:
+    * easy join of story and contribution records - just a single JOIN to add the stories.title column to the query results.
+    * all text submissions almost identical same, some just have a title
+* Contribution cons:
+    * POST
 #### Stories routes
 * (Done) move most routes to routes/contributions.js
 
 #### Contributions routes
+* TD - make POST /contributions set accepted as true when user_id = stories.user_id (maybe separate route for OP?)
 * (done) ND - incorporate "GET total # votes for a contribution" language into all "GET contributions" routes
 * (done) ND - change delete vote to an actual router.delete(...)
 * (done) ND - new route - PUT /api/contributions/:id/markaccepted

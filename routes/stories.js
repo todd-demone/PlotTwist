@@ -3,6 +3,11 @@ const router = express.Router();
 
 module.exports = (db) => {
   
+  // GET STORIES
+
+  
+  // GET STORY 
+
   // POST STORY
   router.post("/", (req, res) => {
     const { user_id } = req.session;
