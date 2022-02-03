@@ -22,6 +22,8 @@
 #### General notes
 * ND - amend response for POST routes - `res.status(201).send()`
 * ND - amend response for PUT routes - `res.status(200).send()`
+* TD - Global change of 'creator_id' to 'author_id'
+* TD - Global change of 'working_level' to 'level'
 
 #### Stories routes
 * (Done) move most routes to routes/contributions.js
