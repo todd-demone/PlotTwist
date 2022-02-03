@@ -10,6 +10,7 @@
 ## ERD
 
 #### Stories table 
+* move most routes to routes/contributions.js
 * remove total contributions field - can be achieved with query on contributions table
 * change 'is_complete' to 'completed'?
 
