@@ -1,7 +1,9 @@
+// routes/stories.js
+
 const express = require('express');
 const router = express.Router();
 
-module.exports = (db) => {
+module.exports = (dbStories, dbTwists) => {
   
   //////////////////////////
   //////GET REQUESTS////////
@@ -10,44 +12,28 @@ module.exports = (db) => {
   // GET ALL STORIES
   router.get("/", (req, res) => {
     const limit = 10;
-    const queryString = `
-      SELECT *
-      FROM stories
-      ORDER BY id DESC
-      LIMIT $1;
-    `;
-    const queryParams = [limit];
-    db.query(queryString, queryParams)
-      .then(data => {
-        const stories = data.rows;
-        res.json({ stories });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    
+    dbStories.getStories(limit)
+      .then(stories => res.json({ stories }))
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   // GET STORY
   router.get("/:id", (req, res) => {
     const { id } = req.params;
-    const queryString = `
-      SELECT * 
-      FROM stories 
-      WHERE id = $1;
-    `;
-    const queryParams = [id];
-    db.query(queryString, queryParams)
-      .then(data => {
-        const story = data.rows[0];
-        res.json({ story });
+    const results = {};
+    dbStories.getStory(id)
+      .then(story => results.story = story)
+      .then(function() {
+        return dbTwists.getAcceptedTwists(id);
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+      .then(acceptedTwists => results.twists = acceptedTwists)
+      .then(function() {
+        return dbTwists.getUnacceptedTwists(id);
+      })
+      .then(unacceptedTwists => results.unacceptedTwists = unacceptedTwists)
+      .then(results => res.json({ results }))
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   // GET AUTHOR'S STORIES
@@ -79,51 +65,20 @@ module.exports = (db) => {
   // POST STORY
   router.post("/", (req, res) => {
     const author_id = req.session.user_id;
-    const { title, text } = req.body;
-    const queryString = `
-      INSERT INTO stories
-      (author_id, title, text)
-      VALUES ($1, $2, $3)
-      RETURNING *;
-    `;
-    const queryParams = [author_id, title, text];
-    db.query(queryString, queryParams)  
-    .then(data => { 
-      const story = data.rows[0];
-      // want to send back a story object so front end can render a new story page
-      res.json({ story });
-    }) 
-    .catch(err => {
-      res
-      .status(500)
-      .json({ error: err.message });
-    });
+    const { title, bodytext } = req.body;
+    dbStories.postStory(author_id, title, bodytext)
+      .then(story => res.json({ story })) 
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
-  // MARK STORY COMPLETED
+  // COMPLETE STORY
   router.put("/:id/completed", (req, res) => {
     const { id } = req.params;
     // check if author has permission to edit story title
     const author_id = req.session.user_id;
-    const queryString = `
-      UPDATE stories 
-      SET completed = true 
-      WHERE id = $1
-      AND author_id = $2
-      RETURNING *;
-    `;
-    const queryParams = [id, author_id];
-    db.query(queryString, queryParams)
-      .then(data => {
-        res
-          .status(200)
-          .send();
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });      
+    dbStories.completeStory(id, author_id)
+      .then(() => res.status(200).send())
+      .catch(err => res.status(500).json({ error: err.message }));      
   });
 
   // "DELETE" STORY

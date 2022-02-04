@@ -12,8 +12,11 @@ const morgan = require("morgan");
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
-const db = new Pool(dbParams);
-db.connect();
+const pool = new Pool(dbParams);
+pool.connect();
+const dbStories = require('./db/stories')(pool);
+const dbTwists = require('./db/twists')(pool);
+const dbVotes = require('./db/votes')(pool);
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -42,15 +45,15 @@ app.use(cookieSession({
 // Note: Feel free to replace the example routes below with your own
 const loginRoutes = require("./routes/login");
 const storiesRoutes = require("./routes/stories");
-const contributionsRoutes = require("./routes/contributions");
+const twistsRoutes = require("./routes/twists");
 const votesRoutes = require("./routes/votes");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/login", loginRoutes());
-app.use("/api/stories", storiesRoutes(db));
-app.use("/api/contributions", contributionsRoutes(db));
-app.use("/api/votes", votesRoutes(db));
+app.use("/api/stories", storiesRoutes(dbStories));
+app.use("/api/contributions", twistsRoutes(dbTwists));
+app.use("/api/votes", votesRoutes(dbVotes));
 
 // Note: mount other resources here, using the same pattern above
 
