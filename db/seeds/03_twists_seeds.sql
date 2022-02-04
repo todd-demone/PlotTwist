@@ -1,4 +1,4 @@
-INSERT INTO twists (story_id, author_id, parent_id, text, accepted) VALUES (1,  1,  null, 'Mr. Dursley stuck hi head out of the window.  Suddenly the owl grabbed him by his mop of hair and lifted him into the sky!',false);
+INSERT INTO twists (story_id, author_id, parent_id, text, accepted) VALUES (1,  1,  null, 'Mr. Dursley stuck his head out of the window.  Suddenly the owl grabbed him by his mop of hair and lifted him into the sky!',false);
 INSERT INTO twists (story_id, author_id, parent_id, text, accepted) VALUES (1,  2,  null, 'Harry Potter then came and magicked really good. The End.',false);
 INSERT INTO twists (story_id, author_id, parent_id, text, accepted) VALUES (2,  2,  null, 'it was the age of wisdom, it was the age of foolishness,', false);
 INSERT INTO twists (story_id, author_id, parent_id, text, accepted) VALUES (2,  3,  4, 'it was the epoch of belief, it was the epoch of incredulity, ', false);

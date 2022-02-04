@@ -5,6 +5,7 @@ CREATE TABLE twists (
   story_id INTEGER REFERENCES stories(id) ON DELETE CASCADE,
   author_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   parent_id INTEGER REFERENCES twists(id) ON DELETE CASCADE,
+  level SMALLINT,
   text VARCHAR(400),
   accepted BOOLEAN DEFAULT false,
   date_created TIMESTAMP
