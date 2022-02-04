@@ -9,7 +9,7 @@ module.exports = (dbStories, dbTwists) => {
   //////GET REQUESTS////////
   //////////////////////////
 
-  // GET ALL STORIES
+  // GET STORIES
   router.get("/", (req, res) => {
     const limit = 10;
     
@@ -24,13 +24,9 @@ module.exports = (dbStories, dbTwists) => {
     const results = {};
     dbStories.getStory(id)
       .then(story => results.story = story)
-      .then(function() {
-        return dbTwists.getAcceptedTwists(id);
-      })
+      .then(() => dbTwists.getAcceptedTwists(id))
       .then(acceptedTwists => results.twists = acceptedTwists)
-      .then(function() {
-        return dbTwists.getUnacceptedTwists(id);
-      })
+      .then(() => dbTwists.getUnacceptedTwists(id))
       .then(unacceptedTwists => results.unacceptedTwists = unacceptedTwists)
       .then(results => res.json({ results }))
       .catch(err => res.status(500).json({ error: err.message }));
@@ -39,23 +35,9 @@ module.exports = (dbStories, dbTwists) => {
   // GET AUTHOR'S STORIES
   router.get("/author/:author_id", (req, res) => {
     const { author_id } = req.params;
-    const queryString = `
-      SELECT * 
-      FROM stories
-      WHERE author_id = $1
-      ORDER BY id DESC;
-    `;
-    const queryParams = [author_id];
-    db.query(queryString, queryParams)
-      .then(data => {
-        const stories = data.rows;
-        res.json({ stories });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    dbStories.getAuthorStories(author_id)
+      .then(stories => res.json({ stories }))
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   ///////////////////////////
@@ -85,51 +67,19 @@ module.exports = (dbStories, dbTwists) => {
   router.put("/:id/delete", (req, res) => {
     const { id } = req.params;
     const author_id = req.session.user_id;
-    const queryString = `
-      UPDATE stories
-      SET text='[Deleted]'
-      WHERE id = $1
-      AND author_id = $2 
-      RETURNING *;
-    `;
-    const queryParams = [id, author_id];
-    db.query(queryString, queryParams)
-      .then(data => {
-        res
-          .status(200)
-          .send();
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    dbStories.deleteStory(id, author_id)
+      .then(() => res.status(200).send())
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   // EDIT STORY
   router.put("/:id", (req, res) => {
-    const { title, text } = req.body;
+    const { title, bodytext } = req.body;
     const { id } = req.params;
     const author_id = req.session.user_id;
-    const queryString = `
-      UPDATE stories
-      SET title = $1, text = $2
-      WHERE id = $3 
-      AND author_id = $4
-      RETURNING *;
-    `;
-    const queryParams = [title, text, id, author_id];
-    db.query(queryString, queryParams)
-      .then(data => {
-        res
-          .status(200)
-          .send();
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    dbStories.editStory(title, bodytext, id, author_id)
+      .then(() => res.status(200).send())
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   return router;

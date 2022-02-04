@@ -62,10 +62,60 @@ module.exports = (pool) => {
       .catch(error => console.error(error.message));
   };
 
+  // GET AUTHOR'S STORIES
+  const getAuthorStories = (author_id) => {
+    const queryString = `
+      SELECT * 
+      FROM stories
+      WHERE author_id = $1
+      ORDER BY id DESC;
+    `;
+    const queryParams = [author_id];
+    return pool
+      .query(queryString, queryParams)
+      .then(data => data.rows)
+      .catch(error => console.error(error.message));
+  };
+
+  // DELETE STORY
+  const deleteStory = (id, author_id) => {
+    const queryString = `
+    UPDATE stories
+    SET text='[Deleted]'
+    WHERE id = $1
+    AND author_id = $2 
+    RETURNING *;
+  `;
+  const queryParams = [id, author_id];
+  return pool
+    .query(queryString, queryParams)
+    .then(data => data.rows[0])
+    .catch(error => console.error(error.message));
+  };
+
+  // EDIT STORY
+  const editStory = (title, bodytext, id, author_id) => {
+    const queryString = `
+      UPDATE stories
+      SET title = $1, bodytext = $2
+      WHERE id = $3 
+      AND author_id = $4
+      RETURNING *;
+    `;
+    const queryParams = [title, bodytext, id, author_id];
+     return pool
+      .query(queryString, queryParams)
+      .then(data => data.rows[0])
+      .catch(error => console.error(error.message));
+  };
+
   return {
     getStories,
     getStory,
     postStory,
-    completeStory
+    completeStory,
+    getAuthorStories,
+    deleteStory,
+    editStory
   };
 };
