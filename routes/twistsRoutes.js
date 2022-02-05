@@ -10,61 +10,20 @@ module.exports = (db) => {
   // GET ACCEPTED TWISTS FOR A STORY
   router.get("/story/:story_id/accepted", (req, res) => {
     const { story_id } = req.params;
-    const queryString = `
-      SELECT twists.*, count(votes) AS number_of_votes
-      FROM twists
-      JOIN votes ON twists.id = votes.twist_id
-      GROUP BY twists.id
-      WHERE story_id = $1
-      AND accepted = true
-      ORDER BY level ASC;
-    `;
 
-    const queryParams = [story_id];
 
-    db.query(queryString, queryParams)
-      .then(data => {
-        const twists = data.rows;
-        res.json({ twists });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    dbTwists.getStoryAcceptedTwists(story_id)
+      .then(twists => res.json({ twists }))
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   // GET UNACCEPTED TWISTS FOR A STORY
   router.get("/story/:story_id/unaccepted", (req, res) => {
     const { story_id } = req.params;
-    // TODO: amend query string to order twists in 'thread' order
-    const queryString = `
-      SELECT twists.*, count(votes) AS number_of_votes
-      FROM twists
-      JOIN votes ON twists.id = votes.twist_id
-      WHERE story_id = $1
-      AND accepted = false
-      ORDER BY parent_id ASC NULLS FIRST;
-      `;
-      /*
-      WITH RECURSIVE story_thread AS (
-      SELECT * FROM twists WHERE parent_id IS NULL
-      UNION ALL
-      SELECT t.* FROM twists AS t JOIN story_thread AS s ON t.parent_id = s.id
-      )
-      SELECT * FROM story_thread;
-      */
-    const queryParams = [story_id];
-    db.query(queryString, queryParams)
-      .then(data => {
-        const twists = data.rows;
-        res.json({ twists });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+
+    dbTwists.getStoryUnacceptedTwists(story_id)
+      .then(twists => res.json({ twists }))
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   // GET AUTHOR'S TWISTS
@@ -93,7 +52,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-  
+
   ///////////////////////////
   ////POST & PUT REQUESTS////
   ///////////////////////////
@@ -151,7 +110,7 @@ module.exports = (db) => {
     const { id } = req.params;
     const author_id = req.session.user_id;
     queryString = `
-      UPDATE twists 
+      UPDATE twists
       SET text='[Deleted]'
       WHERE id = $1
       AND author_id = $2

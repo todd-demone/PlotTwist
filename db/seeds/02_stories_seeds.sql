@@ -1,4 +1,4 @@
-INSERT INTO stories (author_id, title, text) VALUES (
+INSERT INTO stories (author_id, title, bodytext) VALUES (
   3,
   'The Boy Who Lived',
   'Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that they were perfectly
@@ -24,12 +24,12 @@ work, and Mrs. Dursley gossiped away happily as she wrestled a screaming Dudley 
 chair.
  None of them noticed a large, tawny owl flutter past the window. ');
 
- INSERT INTO stories (author_id, title, text) VALUES (
+ INSERT INTO stories (author_id, title, bodytext) VALUES (
   1,
   'A Tale to be continued',
  'It was the best of times, it was the worst of times,  ');
 
-INSERT INTO stories (author_id, title, text) VALUES (
+INSERT INTO stories (author_id, title, bodytext) VALUES (
   1,
   'The Flufferbunny (working title)',
  'Twas brillig, and the slithy toves
