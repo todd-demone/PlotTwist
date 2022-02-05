@@ -5,10 +5,6 @@ const router = express.Router();
 
 module.exports = (dbStories, dbTwists) => {
   
-  //////////////////////////
-  //////GET REQUESTS////////
-  //////////////////////////
-
   // GET STORIES
   router.get("/", (req, res) => {
     const limit = 10;
@@ -32,18 +28,6 @@ module.exports = (dbStories, dbTwists) => {
       .catch(err => res.status(500).json({ error: err.message }));
   });
 
-  // GET AUTHOR'S STORIES
-  router.get("/author/:author_id", (req, res) => {
-    const { author_id } = req.params;
-    dbStories.getAuthorStories(author_id)
-      .then(stories => res.json({ stories }))
-      .catch(err => res.status(500).json({ error: err.message }));
-  });
-
-  ///////////////////////////
-  ////POST & PUT REQUESTS////
-  ///////////////////////////
-
   // POST STORY
   router.post("/", (req, res) => {
     const author_id = req.session.user_id;
@@ -63,6 +47,15 @@ module.exports = (dbStories, dbTwists) => {
       .catch(err => res.status(500).json({ error: err.message }));      
   });
 
+  // GET AUTHOR'S STORIES
+  router.get("/author/:author_id", (req, res) => {
+    const { author_id } = req.params;
+    dbStories.getAuthorStories(author_id)
+      .then(stories => res.json({ stories }))
+      .catch(err => res.status(500).json({ error: err.message }));
+  });
+
+  
   // "DELETE" STORY
   router.put("/:id/delete", (req, res) => {
     const { id } = req.params;

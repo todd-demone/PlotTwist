@@ -80,17 +80,17 @@ module.exports = (pool) => {
   // DELETE STORY
   const deleteStory = (id, author_id) => {
     const queryString = `
-    UPDATE stories
-    SET text='[Deleted]'
-    WHERE id = $1
-    AND author_id = $2 
-    RETURNING *;
-  `;
-  const queryParams = [id, author_id];
-  return pool
-    .query(queryString, queryParams)
-    .then(data => data.rows[0])
-    .catch(error => console.error(error.message));
+      UPDATE stories
+      SET bodytext='[Deleted]'
+      WHERE id = $1
+      AND author_id = $2 
+      RETURNING *;
+    `;
+    const queryParams = [id, author_id];
+    return pool
+      .query(queryString, queryParams)
+      .then(data => data.rows[0])
+      .catch(error => console.error(error.message));
   };
 
   // EDIT STORY
