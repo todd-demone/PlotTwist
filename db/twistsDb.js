@@ -1,5 +1,27 @@
 module.exports = (pool) => {
 
+  // GET TWISTS FOR A STORY
+  const getTwists = (story_id) => {
+    const queryString = `
+      SELECT twists.*, users.username, newTwists.number_of_votes
+      FROM
+      (
+        SELECT twists.id as id, count(votes) as number_of_votes
+        FROM twists
+        JOIN votes ON twists.id = votes.twist_id
+        WHERE twists.story_id = $1
+        GROUP BY twists.id
+        ORDER BY parent_id NULLS FIRST
+      ) newTwists 
+      JOIN twists ON twists.id = newTwists.id
+      JOIN users ON twists.author_id = users.id;
+    `;
+    const queryParams = [story_id];
+    return pool 
+      .query(queryString, queryParams)
+      .then(data => data.rows)
+      .catch(error => console.error(error.message));
+  }
   // GET ACCEPTED TWISTS FOR A STORY
   const getStoryAcceptedTwists = (story_id) => {
 
@@ -53,8 +75,9 @@ module.exports = (pool) => {
    // ACCEPT A TWIST
    // DELETE TWIST
 
-   return {
-     getStoryAcceptedTwists,
-     getStoryUnacceptedTwists
-    }
+  return {
+    getTwists,  
+    getStoryAcceptedTwists,
+    getStoryUnacceptedTwists
+  }
 };
