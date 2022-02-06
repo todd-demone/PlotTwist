@@ -41,9 +41,17 @@ module.exports = (dbStories, dbTwists) => {
   // COMPLETE STORY
   router.put("/:id/complete", (req, res) => {
     const { id } = req.params;
-    // const author_id = req.session.user_id;
-    dbStories.completeStory(id)
-      .then(() => res.status(200).send())
+    const author_id = req.session.user_id;
+    if (!author_id) {
+      return res.status(401).send('Please login before trying to post stories.')
+    }
+    dbStories.completeStory(id, author_id)
+      .then( story => {
+        if (!story) {
+          return res.send(`Either the story doesn't exist, or you are not authorized to complete this story.`)
+        }  
+        res.status(200).send();
+      })
       .catch(err => res.status(500).json({ error: err.message }));      
   });
 
