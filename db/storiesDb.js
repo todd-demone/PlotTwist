@@ -5,8 +5,9 @@ module.exports = (pool) => {
   // GET STORIES
   const getStories = (limit) => {
     const queryString = `
-      SELECT *
+      SELECT stories.*, users.username
       FROM stories
+      JOIN users ON stories.author_id = users.id
       ORDER BY id DESC
       LIMIT $1;
     `;
