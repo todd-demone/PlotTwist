@@ -6,7 +6,7 @@ const router = express.Router();
 module.exports = (dbStories, dbTwists) => {
   
   // GET STORIES
-  router.get("/", (req, res) => {
+  router.get("/", (_req, res) => {
     const limit = 10;
     
     dbStories.getStories(limit)
@@ -18,7 +18,6 @@ module.exports = (dbStories, dbTwists) => {
     const { id } = req.params;
     let story;
     let twists;
-    const results = {};
     dbStories.getStory(id)
       .then(result => story = result)
       .then(() => dbTwists.getTwists(id))
@@ -37,11 +36,11 @@ module.exports = (dbStories, dbTwists) => {
   });
 
   // COMPLETE STORY
-  router.put("/:id/completed", (req, res) => {
+  router.put("/:id/complete", (req, res) => {
     const { id } = req.params;
     // check if author has permission to edit story title
     // const author_id = req.session.user_id;
-    dbStories.completedStory(id)
+    dbStories.completeStory(id)
       .then(() => res.status(200).send())
       .catch(err => res.status(500).json({ error: err.message }));      
   });
