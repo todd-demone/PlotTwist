@@ -2,7 +2,7 @@
 
 module.exports = (pool) => {
 
-  // GET STORIES - DB QUERY
+  // GET STORIES
   const getStories = (limit) => {
     const queryString = `
       SELECT *
@@ -17,7 +17,7 @@ module.exports = (pool) => {
       .catch(error => console.error(error.message));
   };
 
-  // GET STORY - DB QUERY
+  // GET STORY
   const getStory = (id) => {
     const queryString = `
       SELECT * 
@@ -31,7 +31,7 @@ module.exports = (pool) => {
       .catch(error => console.error(error.message));
   };
 
-  // POST STORY - DB QUERY
+  // POST STORY
   const postStory = (author_id, title, bodytext) => {
     const queryString = `
       INSERT INTO stories
@@ -46,7 +46,7 @@ module.exports = (pool) => {
       .catch(error => console.error(error.message));
   };
 
-  // COMPLETE STORY - DB QUERY
+  // COMPLETE STORY
   const completeStory = (id, author_id) => {
     const queryString = `
       UPDATE stories 
