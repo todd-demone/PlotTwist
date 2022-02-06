@@ -2,12 +2,13 @@
 
 module.exports = (pool) => {
 
-  // GET STORIES - DB QUERY
+  // GET STORIES
   const getStories = (limit) => {
     const queryString = `
-      SELECT *
+      SELECT stories.*, users.username
       FROM stories
-      ORDER BY id DESC
+      JOIN users ON stories.author_id = users.id
+      ORDER BY stories.id DESC
       LIMIT $1;
     `;
     const queryParams = [limit];
@@ -17,12 +18,13 @@ module.exports = (pool) => {
       .catch(error => console.error(error.message));
   };
 
-  // GET STORY - DB QUERY
+  // GET STORY
   const getStory = (id) => {
     const queryString = `
-      SELECT * 
-      FROM stories 
-      WHERE id = $1;
+      SELECT stories.*, users.username 
+      FROM stories
+      JOIN users ON stories.author_id = users.id
+      WHERE stories.id = $1;
     `;
     const queryParams = [id];
     return pool
@@ -31,7 +33,7 @@ module.exports = (pool) => {
       .catch(error => console.error(error.message));
   };
 
-  // POST STORY - DB QUERY
+  // POST STORY
   const postStory = (author_id, title, bodytext) => {
     const queryString = `
       INSERT INTO stories
@@ -46,16 +48,15 @@ module.exports = (pool) => {
       .catch(error => console.error(error.message));
   };
 
-  // COMPLETE STORY - DB QUERY
-  const completeStory = (id, author_id) => {
+  // COMPLETE STORY
+  const completeStory = (id) => {
     const queryString = `
       UPDATE stories 
       SET completed = true 
       WHERE id = $1
-      AND author_id = $2
       RETURNING *;
     `;
-    const queryParams = [id, author_id];
+    const queryParams = [id];
     return pool
       .query(queryString, queryParams)
       .then(data => data.rows[0])
@@ -78,31 +79,29 @@ module.exports = (pool) => {
   };
 
   // DELETE STORY
-  const deleteStory = (id, author_id) => {
+  const deleteStory = (id) => {
     const queryString = `
-    UPDATE stories
-    SET text='[Deleted]'
-    WHERE id = $1
-    AND author_id = $2 
-    RETURNING *;
-  `;
-  const queryParams = [id, author_id];
-  return pool
-    .query(queryString, queryParams)
-    .then(data => data.rows[0])
-    .catch(error => console.error(error.message));
+      UPDATE stories
+      SET bodytext='[Deleted]'
+      WHERE id = $1
+      RETURNING *;
+    `;
+    const queryParams = [id];
+    return pool
+      .query(queryString, queryParams)
+      .then(data => data.rows[0])
+      .catch(error => console.error(error.message));
   };
 
   // EDIT STORY
-  const editStory = (title, bodytext, id, author_id) => {
+  const editStory = (title, bodytext, id) => {
     const queryString = `
       UPDATE stories
       SET title = $1, bodytext = $2
       WHERE id = $3 
-      AND author_id = $4
       RETURNING *;
     `;
-    const queryParams = [title, bodytext, id, author_id];
+    const queryParams = [title, bodytext, id];
      return pool
       .query(queryString, queryParams)
       .then(data => data.rows[0])

@@ -14,9 +14,9 @@ const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const pool = new Pool(dbParams);
 pool.connect();
-const dbStories = require('./db/stories')(pool);
-const dbTwists = require('./db/twists')(pool);
-const dbVotes = require('./db/votes')(pool);
+const dbStories = require('./db/storiesDb')(pool);
+const dbTwists = require('./db/twistsDb')(pool);
+const dbVotes = require('./db/votesDb')(pool);
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -33,6 +33,7 @@ app.use(
     isSass: false, // false => scss, true => sass
   })
 );
+app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -42,20 +43,20 @@ app.use(cookieSession({
 }));
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-const loginRoutes = require("./routes/login");
-const storiesRoutes = require("./routes/stories");
-const twistsRoutes = require("./routes/twists");
-const votesRoutes = require("./routes/votes");
+const loginRoutes = require("./routes/loginRoutes");
+const storiesRoutes = require("./routes/storiesRoutes");
+const twistsRoutes = require("./routes/twistsRoutes");
+const votesRoutes = require("./routes/votesRoutes");
 
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
 app.use("/login", loginRoutes());
 app.use("/api/stories", storiesRoutes(dbStories, dbTwists));
 app.use("/api/twists", twistsRoutes(dbTwists));
 app.use("/api/votes", votesRoutes(dbVotes));
 
-// Note: mount other resources here, using the same pattern above
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
