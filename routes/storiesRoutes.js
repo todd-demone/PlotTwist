@@ -29,6 +29,9 @@ module.exports = (dbStories, dbTwists) => {
   // POST STORY
   router.post("/", (req, res) => {
     const author_id = req.session.user_id;
+    if (!author_id) {
+      return res.status(401).send('Please login before trying to post stories.')
+    }
     const { title, bodytext } = req.body;
     dbStories.postStory(author_id, title, bodytext)
       .then(story => res.json({ story })) 
@@ -38,7 +41,6 @@ module.exports = (dbStories, dbTwists) => {
   // COMPLETE STORY
   router.put("/:id/complete", (req, res) => {
     const { id } = req.params;
-    // check if author has permission to edit story title
     // const author_id = req.session.user_id;
     dbStories.completeStory(id)
       .then(() => res.status(200).send())
