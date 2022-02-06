@@ -37,11 +37,11 @@ module.exports = (dbStories, dbTwists) => {
   });
 
   // COMPLETE STORY
-  router.put("/:id/completed", (req, res) => {
+  router.put("/:id/complete", (req, res) => {
     const { id } = req.params;
     // check if author has permission to edit story title
     const author_id = req.session.user_id;
-    dbStories.completeStory(id, author_id)
+    dbStories.completeStory(id)
       .then(() => res.status(200).send())
       .catch(err => res.status(500).json({ error: err.message }));      
   });
