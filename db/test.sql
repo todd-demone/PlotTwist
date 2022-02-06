@@ -1,5 +1,36 @@
 -- getTwists CTE query
 
+WITH RECURSIVE tp 
+(id, story_id, author_id, parent_id, bodytext, accepted, date_created, username, number_of_votes, depth) AS 
+(
+    SELECT twists.id, twists.story_id, twists.author_id, twists.parent_id, twists.bodytext, twists.accepted, twists.date_created, users.username, twistsVotes.number_of_votes, 0 
+    FROM 
+    (
+      SELECT twists.id as id, count(votes) as number_of_votes
+      FROM twists
+      LEFT JOIN votes ON twists.id = votes.twist_id
+      WHERE twists.story_id = 2
+      GROUP BY twists.id
+    ) twistsVotes
+    JOIN twists ON twists.id = twistsVotes.id
+    JOIN users ON twists.author_id = users.id
+    WHERE twists.parent_id = 0
+  UNION ALL
+    SELECT twists.id, twists.story_id, twists.author_id, twists.parent_id, twists.bodytext, twists.accepted, twists.date_created, users.username, twistsVotes.number_of_votes, tp.depth + 1
+    FROM
+    (
+      SELECT twists.id as id, count(votes) as number_of_votes
+      FROM twists
+      LEFT JOIN votes ON twists.id = votes.twist_id
+      WHERE twists.story_id = 2
+      GROUP BY twists.id
+    ) twistsVotes
+    JOIN twists ON twists.id = twistsVotes.id
+    JOIN users ON twists.author_id = users.id
+    JOIN tp ON twists.parent_id = tp.id
+)
+SELECT * FROM tp ORDER BY depth, id;
+
 -- CTE defines a temporary table that is only referenced in the next statement
 -- WITH defines what it looks like - name and fields
 -- WITH RECURSIVE twistsAndTheirParents
@@ -70,12 +101,19 @@
 -- LINE 35:         users.username,
 --                  ^
 
-WITH RECURSIVE tp (id, parent_id, depth) AS (
-    SELECT t.id, t.parent_id, 0 
-    FROM twists t WHERE t.parent_id IS NULL
-  UNION ALL
-    SELECT t.id, t.parent_id, tp.depth + 1
-    FROM twists t, tp
-    WHERE t.parent_id = tp.id AND t.parent_id IS NOT NULL
-)
-SELECT * FROM tp;
+-- WITH RECURSIVE tp 
+-- (id, story_id, author_id, parent_id, bodytext, username, depth) AS 
+-- (
+--     SELECT twists.id, twists.story_id, twists.author_id, twists.parent_id, twists.bodytext, users.username, 0 
+--     FROM twists
+--     JOIN users ON twists.author_id = users.id
+--     WHERE twists.parent_id = 0
+--   UNION ALL
+--     SELECT twists.id, twists.story_id, twists.author_id, twists.parent_id, twists.bodytext, users.username, tp.depth + 1
+--     FROM twists
+--     JOIN users ON twists.author_id = users.id
+--     JOIN tp ON twists.parent_id = tp.id
+--     -- WHERE t.parent_id = tp.id
+-- )
+-- SELECT * FROM tp ORDER BY depth;
+
