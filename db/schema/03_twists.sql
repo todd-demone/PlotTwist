@@ -7,5 +7,5 @@ CREATE TABLE twists (
   parent_id INTEGER REFERENCES twists(id) ON DELETE CASCADE,
   bodytext VARCHAR(400),
   accepted BOOLEAN DEFAULT false,
-  date_created TIMESTAMP
+  date_created TIMESTAMP DEFAULT current_timestamp
 );
