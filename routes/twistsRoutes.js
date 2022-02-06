@@ -30,27 +30,9 @@ module.exports = (db) => {
   router.get("author/:author_id", (req, res) => {
     const { author_id } = req.params;
 
-    const queryString = `
-      SELECT twists.*, count(votes) AS number_of_votes
-      FROM twists
-      JOIN votes ON twists.id = votes.twist_id
-      GROUP BY twists.id
-      WHERE author_id = $1
-      ORDER BY date_created, story_id;
-    `;
-
-    const queryParams = [author_id];
-
-    db.query(queryString, queryParams)
-      .then(data => {
-        const twists = data.rows;
-        res.json({ twists });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    dbTwists.getAuthorTwists(author_id)
+      .then(twists => res.json({ twists }))
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   ///////////////////////////
@@ -61,71 +43,29 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     const author_id = req.session.user_id;
     const { story_id, parent_id, level, text } = req.body
-    const queryString = `
-      INSERT INTO twists (author_id, story_id, parent_id, level, text)
-      VALUES ($1, $2, $3, $4, $5)
-      RETURNING *;
-    `;
-    const queryParams = [author_id, story_id, parent_id, level, text];
-
-    db.query(queryString, queryParams)
-      .then(() => {
-        res.status(201).send();
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    dbTwists.postTwist(author_id, story_id, parent_id, level, text)
+      .then(twist => res.json({ story }))
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   // ACCEPT A TWIST
   router.put("/:id/accept", (req, res) => {
     const twist_id = req.params;
     const author_id = req.session.user_id;
-    const queryString = `
-      UPDATE twists
-      SET accepted = true
-      FROM twists
-      JOIN stories ON stories.id = story_id
-      WHERE twists.id = $1
-      AND stories.author_id = $2
-      RETURNING *;
-    `;
-    const queryParams = [twist_id, author_id];
 
-    db.query(queryString, queryParams)
-      .then(() => {
-        res.status(200).send();
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    dbTwists.acceptTwist(twist_id, author_id)
+      .then(() => res.status(200).send())
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   // DELETE TWIST
   router.put("/:id/delete", (req, res) => {
     const { id } = req.params;
     const author_id = req.session.user_id;
-    queryString = `
-      UPDATE twists
-      SET text='[Deleted]'
-      WHERE id = $1
-      AND author_id = $2
-      RETURNING *;
-    `;
-    queryParams = [id, author_id];
-    db.query(queryString, queryParams)
-      .then(data => {
-        res.status(200).send();
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+
+    dbTwists(id, author_id)
+      .then(data => res.status(200).send())
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   return router;
