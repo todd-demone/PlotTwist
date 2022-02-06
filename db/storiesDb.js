@@ -52,7 +52,7 @@ module.exports = (pool) => {
   const completeStory = (id) => {
     const queryString = `
       UPDATE stories 
-      SET complete = true 
+      SET completed = true 
       WHERE id = $1
       RETURNING *;
     `;
