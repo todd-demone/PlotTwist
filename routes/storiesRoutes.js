@@ -13,18 +13,17 @@ module.exports = (dbStories, dbTwists) => {
       .then(stories => res.json({ stories }))
       .catch(err => res.status(500).json({ error: err.message }));
   });
-
   // GET STORY
   router.get("/:id", (req, res) => {
     const { id } = req.params;
+    let story;
+    let twists;
     const results = {};
     dbStories.getStory(id)
-      .then(story => results.story = story)
-      .then(() => dbTwists.getAcceptedTwists(id))
-      .then(acceptedTwists => results.twists = acceptedTwists)
-      .then(() => dbTwists.getUnacceptedTwists(id))
-      .then(unacceptedTwists => results.unacceptedTwists = unacceptedTwists)
-      .then(results => res.json({ results }))
+      .then(result => story = result)
+      .then(() => dbTwists.getTwists(id))
+      .then(result => twists = result)
+      .then(() => res.json({ story, twists }))
       .catch(err => res.status(500).json({ error: err.message }));
   });
 
