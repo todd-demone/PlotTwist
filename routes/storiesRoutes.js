@@ -40,7 +40,7 @@ module.exports = (dbStories, dbTwists) => {
   router.put("/:id/complete", (req, res) => {
     const { id } = req.params;
     // check if author has permission to edit story title
-    const author_id = req.session.user_id;
+    // const author_id = req.session.user_id;
     dbStories.completeStory(id)
       .then(() => res.status(200).send())
       .catch(err => res.status(500).json({ error: err.message }));      
@@ -58,8 +58,8 @@ module.exports = (dbStories, dbTwists) => {
   // "DELETE" STORY
   router.put("/:id/delete", (req, res) => {
     const { id } = req.params;
-    const author_id = req.session.user_id;
-    dbStories.deleteStory(id, author_id)
+    // const author_id = req.session.user_id;
+    dbStories.deleteStory(id)
       .then(() => res.status(200).send())
       .catch(err => res.status(500).json({ error: err.message }));
   });
@@ -68,8 +68,8 @@ module.exports = (dbStories, dbTwists) => {
   router.put("/:id", (req, res) => {
     const { title, bodytext } = req.body;
     const { id } = req.params;
-    const author_id = req.session.user_id;
-    dbStories.editStory(title, bodytext, id, author_id)
+    // const author_id = req.session.user_id;
+    dbStories.editStory(title, bodytext, id)
       .then(() => res.status(200).send())
       .catch(err => res.status(500).json({ error: err.message }));
   });
