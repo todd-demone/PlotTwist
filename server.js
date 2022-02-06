@@ -42,20 +42,16 @@ app.use(cookieSession({
 }));
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
 const loginRoutes = require("./routes/login");
 const storiesRoutes = require("./routes/stories");
 const twistsRoutes = require("./routes/twists");
 const votesRoutes = require("./routes/votes");
 
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
 app.use("/login", loginRoutes());
 app.use("/api/stories", storiesRoutes(dbStories, dbTwists));
 app.use("/api/twists", twistsRoutes(dbStories, dbTwists));
 app.use("/api/votes", votesRoutes(dbVotes));
-
-// Note: mount other resources here, using the same pattern above
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
