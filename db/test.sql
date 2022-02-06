@@ -89,17 +89,6 @@ SELECT * FROM tp ORDER BY depth, id;
 -- FROM twistsAndTheirParents
 -- ORDER BY depth;
 
--- midterm=# \i db/test.sql 
--- psql:db/test.sql:59: ERROR:  relation "twistsandtheirparents" does not exist
--- LINE 49: JOIN    twistsAndTheirParents ON twists.parent_id = twistsAn...
--- DETAIL:  There is a WITH item named "twistsandtheirparents", but it cannot be referenced from this part of the query.
--- HINT:  Use WITH RECURSIVE, or re-order the WITH items to remove forward references.
-
-
--- midterm=# \i db/test.sql 
--- psql:db/test.sql:59: ERROR:  UNION types bigint and character varying cannot be matched
--- LINE 35:         users.username,
---                  ^
 
 -- WITH RECURSIVE tp 
 -- (id, story_id, author_id, parent_id, bodytext, username, depth) AS 
