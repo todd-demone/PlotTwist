@@ -21,10 +21,10 @@ module.exports = (pool) => {
   // GET STORY
   const getStory = (id) => {
     const queryString = `
-      SELECT *, users.username 
+      SELECT stories.*, users.username 
       FROM stories
       JOIN users ON stories.author_id = users.id
-      WHERE id = $1;
+      WHERE stories.id = $1;
     `;
     const queryParams = [id];
     return pool
