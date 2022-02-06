@@ -47,15 +47,14 @@ module.exports = (pool) => {
   };
 
   // COMPLETE STORY
-  const completeStory = (id, author_id) => {
+  const completeStory = (id) => {
     const queryString = `
       UPDATE stories 
-      SET completed = true 
+      SET complete = true 
       WHERE id = $1
-      AND author_id = $2
       RETURNING *;
     `;
-    const queryParams = [id, author_id];
+    const queryParams = [id];
     return pool
       .query(queryString, queryParams)
       .then(data => data.rows[0])
