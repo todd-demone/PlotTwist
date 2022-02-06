@@ -8,7 +8,7 @@ module.exports = (pool) => {
       SELECT stories.*, users.username
       FROM stories
       JOIN users ON stories.author_id = users.id
-      ORDER BY id DESC
+      ORDER BY stories.id DESC
       LIMIT $1;
     `;
     const queryParams = [limit];
