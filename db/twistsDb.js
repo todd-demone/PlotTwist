@@ -21,7 +21,8 @@ module.exports = (pool) => {
       .query(queryString, queryParams)
       .then(data => data.rows)
       .catch(error => console.error(error.message));
-  }
+  };
+  
   // GET ACCEPTED TWISTS FOR A STORY
   const getStoryAcceptedTwists = (story_id) => {
 
