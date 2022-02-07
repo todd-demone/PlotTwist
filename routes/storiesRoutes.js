@@ -26,11 +26,19 @@ module.exports = (dbStories, dbTwists) => {
       .catch(err => res.status(500).json({ error: err.message }));
   });
 
+  // GET AUTHOR'S STORIES
+  router.get("/author/:author_id", (req, res) => {
+    const { author_id } = req.params;
+    dbStories.getAuthorStories(author_id)
+      .then(stories => res.json({ stories }))
+      .catch(err => res.status(500).json({ error: err.message }));
+  });
+
   // POST STORY
   router.post("/", (req, res) => {
     const author_id = req.session.user_id;
     if (!author_id) {
-      return res.status(401).send('Please login before trying to post stories.')
+      return res.status(401).send('You cannot post a story because you are not logged in.')
     }
     const { title, bodytext } = req.body;
     dbStories.postStory(author_id, title, bodytext)
@@ -43,43 +51,41 @@ module.exports = (dbStories, dbTwists) => {
     const { id } = req.params;
     const author_id = req.session.user_id;
     if (!author_id) {
-      return res.status(401).send('Please login before trying to post stories.')
+      return res.status(401).send('You cannot mark this story as complete because you are not logged in.')
     }
     dbStories.completeStory(id, author_id)
-      .then( story => {
+      .then(story => {
         if (!story) {
-          return res.send(`Either the story doesn't exist, or you are not authorized to complete this story.`)
+          return res.status(404).send(`You cannot mark this story as complete because (a) you are not the authorized user or (b) the story doesn't exist.`)
         }  
-        res.status(200).send();
+        res.json({ story })
+        // res.status(200).send();
       })
       .catch(err => res.status(500).json({ error: err.message }));      
   });
-
-  // GET AUTHOR'S STORIES
-  router.get("/author/:author_id", (req, res) => {
-    const { author_id } = req.params;
-    dbStories.getAuthorStories(author_id)
-      .then(stories => res.json({ stories }))
-      .catch(err => res.status(500).json({ error: err.message }));
-  });
-
   
   // "DELETE" STORY
   router.put("/:id/delete", (req, res) => {
     const { id } = req.params;
-    // const author_id = req.session.user_id;
-    dbStories.deleteStory(id)
+    const author_id = req.session.user_id;
+    if (!author_id) {
+      return res.status(401).send('You cannot delete this story as complete because you are not logged in.')
+    }
+    dbStories.deleteStory(id, author_id)
       .then(() => res.status(200).send())
       .catch(err => res.status(500).json({ error: err.message }));
   });
 
   // EDIT STORY
-  router.put("/:id", (req, res) => {
+  router.put("/:id/edit", (req, res) => {
     const { title, bodytext } = req.body;
     const { id } = req.params;
-    // const author_id = req.session.user_id;
-    dbStories.editStory(title, bodytext, id)
-      .then(() => res.status(200).send())
+    const author_id = req.session.user_id;
+    if (!author_id) {
+      return res.status(401).send('You cannot edit this story because you are not logged in.')
+    }
+    dbStories.editStory(title, bodytext, id, author_id)
+      .then(story => res.json({ story }))
       .catch(err => res.status(500).json({ error: err.message }));
   });
 
