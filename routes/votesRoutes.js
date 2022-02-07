@@ -1,4 +1,5 @@
 const express = require('express');
+const votesDb = require('../db/votesDb');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -7,41 +8,19 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     const { user_id } = req.session;
     const { twist_id } = req.body;
-    queryString = `
-      INSERT INTO votes (user_id, twist_id)
-      VALUES ($1, $2)
-      RETURNING *;
-    `;
-    queryParams = [user_id, twist_id];
-    db.query(queryString, queryParams)
-      .then(data => {
-        res.status(201).send();
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+
+    vote(user_id, twist_id)
+      .then(data => res.status(201).send())
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   // DELETE VOTE
   router.delete("/:id", (req, res) => {
     const { id } = req.params;
-    queryString = `
-      DELETE votes.*
-      WHERE id = $1
-      RETURNING *;
-    `;
-    queryParams = [id];
-    db.query(queryString, queryParams)
-      .then(() => {
-        res.status(204).send();
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+
+    deleteVote(id)
+      .then(() => res.status(204).send())
+      .catch(err => res.status(500).json({ error: err.message }));
   });
 
   return router;
