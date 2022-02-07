@@ -121,37 +121,42 @@ module.exports = (pool) => {
       .catch(error => console.error(error.message));
   };
 
+  ///////////////////////
+  //////POST & PUT///////
+  ///////////////////////
+
    // POST A TWIST
-    const postTwist = (author_id, story_id, parent_id, level, text) => {
+    const postTwist = (author_id, story_id, parent_id, bodytext) => {
       const queryString = `
-      INSERT INTO twists (author_id, story_id, parent_id, level, text)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO twists
+      (author_id, story_id, parent_id, bodytext)
+      VALUES ($1, $2, $3, $4)
       RETURNING *;
     `;
-    const queryParams = [author_id, story_id, parent_id, level, text];
+    const queryParams = [author_id, story_id, parent_id, bodytext];
 
     return pool
       .query(queryString, queryParams)
-      .then(data => data.rows)
+      .then(data => data.rows[0])
       .catch(error => console.error(error.message));
   };
 
    // ACCEPT A TWIST
-    const acceptTwist = (twist_id, author_id) => {
+    const acceptTwist = (twist_id) => {
     const queryString = `
     UPDATE twists
     SET accepted = true
-    FROM twists
-    JOIN stories ON stories.id = story_id
     WHERE twists.id = $1
-    AND stories.author_id = $2
     RETURNING *;
     `;
-    const queryParams = [twist_id, author_id];
+    const queryParams = [twist_id];
 
     return pool
       .query(queryString, queryParams)
-      .then(data => data.rows)
+      .then(data => {
+        console.log(data.rows)
+        return data.rows[0]
+      })
       .catch(error => console.error(error.message));
   };
 
@@ -159,7 +164,7 @@ module.exports = (pool) => {
    const deleteTwist = (id, author_id) => {
    queryString = `
       UPDATE twists
-      SET text='[Deleted]'
+      SET bodytext = '[Deleted]'
       WHERE id = $1
       AND author_id = $2
       RETURNING *;
@@ -167,7 +172,7 @@ module.exports = (pool) => {
     queryParams = [id, author_id];
     return pool
       .query(queryString, queryParams)
-      .then(data => data.rows)
+      .then(data => data.rows[0])
       .catch(error => console.error(error.message));
    };
 

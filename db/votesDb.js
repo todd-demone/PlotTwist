@@ -9,21 +9,20 @@ module.exports = (pool) => {
     queryParams = [user_id, twist_id];
     return pool
       .query(queryString, queryParams)
-      .then(data = data.rows)
+      .then(data => data.rows[0])
       .catch(error => console.error(error.message));
   };
 
   //DELETE VOTE
-  const deleteVote = (id) => {
+  const deleteVote = (vote_id) => {
     queryString = `
-      DELETE votes.*
-      WHERE id = $1
-      RETURNING *;
+      DELETE FROM votes
+      WHERE id = $1;
     `;
-    queryParams = [id];
+    queryParams = [vote_id];
     return pool
       .query(queryString, queryParams)
-      .then(data = data.rows)
+      .then(data => data.rows[0])
       .catch(error => console.error(error.message));
 
   }

@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-module.exports = (db) => {
+module.exports = (dbTwists) => {
 
   //////////////////////////
   //////GET REQUESTS////////
@@ -42,24 +42,23 @@ module.exports = (db) => {
   // POST A TWIST
   router.post("/", (req, res) => {
     const author_id = req.session.user_id;
-    const { story_id, parent_id, level, text } = req.body
-    dbTwists.postTwist(author_id, story_id, parent_id, level, text)
-      .then(twist => res.json({ story }))
+    const { story_id, parent_id, bodytext } = req.body
+    dbTwists.postTwist(author_id, story_id, parent_id, bodytext)
+      .then(twist => res.json({ twist }))
       .catch(err => res.status(500).json({ error: err.message }));
   });
 
   // ACCEPT A TWIST
-  router.put("/:id/accept", (req, res) => {
-    const twist_id = req.params;
-    const author_id = req.session.user_id;
-
-    dbTwists.acceptTwist(twist_id, author_id)
-      .then(() => res.status(200).send())
+  router.put("/accept/:twist_id", (req, res) => {
+    const { twist_id } = req.params;
+    // const author_id = req.session.user_id;
+    dbTwists.acceptTwist(twist_id)
+      .then(twist => res.json({ twist }))
       .catch(err => res.status(500).json({ error: err.message }));
   });
 
   // DELETE TWIST
-  router.put("/:id/delete", (req, res) => {
+  router.put("/delete/:twist_id", (req, res) => {
     const { id } = req.params;
     const author_id = req.session.user_id;
 

@@ -1,25 +1,28 @@
 const express = require('express');
-const votesDb = require('../db/votesDb');
 const router  = express.Router();
 
-module.exports = (db) => {
+module.exports = (dbVotes) => {
 
   //VOTE FOR TWIST
-  router.post("/", (req, res) => {
+  router.post("/:twist_id", (req, res) => {
     const { user_id } = req.session;
-    const { twist_id } = req.body;
+    const { twist_id } = req.params;
 
-    vote(user_id, twist_id)
-      .then(data => res.status(201).send())
+    dbVotes.vote(user_id, twist_id)
+      .then(vote => res.json({ vote }))
       .catch(err => res.status(500).json({ error: err.message }));
   });
 
   // DELETE VOTE
-  router.delete("/:id", (req, res) => {
-    const { id } = req.params;
+  router.delete("/delete/:vote_id", (req, res) => {
+    const { user_id } = req.session;
+    const { vote_id } = req.params;
+    if (!user_id) {
+      return res.status(401).send('You cannot delete a vote that you didn\'t create.')
+    }
 
-    deleteVote(id)
-      .then(() => res.status(204).send())
+    dbVotes.deleteVote(vote_id)
+      .then((num_deleted) => res.json({ num_deleted }))
       .catch(err => res.status(500).json({ error: err.message }));
   });
 

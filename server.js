@@ -58,6 +58,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, 'localhost', () => {
   console.log(`Example app listening on port ${PORT}`);
 });
