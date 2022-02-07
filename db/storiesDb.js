@@ -49,14 +49,15 @@ module.exports = (pool) => {
   };
 
   // COMPLETE STORY
-  const completeStory = (id) => {
+  const completeStory = (id, author_id) => {
     const queryString = `
       UPDATE stories 
       SET completed = true 
       WHERE id = $1
+      AND author_id = $2
       RETURNING *;
     `;
-    const queryParams = [id];
+    const queryParams = [id, author_id];
     return pool
       .query(queryString, queryParams)
       .then(data => data.rows[0])
@@ -79,14 +80,15 @@ module.exports = (pool) => {
   };
 
   // DELETE STORY
-  const deleteStory = (id) => {
+  const deleteStory = (id, author_id) => {
     const queryString = `
       UPDATE stories
       SET bodytext='[Deleted]'
       WHERE id = $1
+      AND author_id = $2
       RETURNING *;
     `;
-    const queryParams = [id];
+    const queryParams = [id, author_id];
     return pool
       .query(queryString, queryParams)
       .then(data => data.rows[0])
@@ -94,15 +96,30 @@ module.exports = (pool) => {
   };
 
   // EDIT STORY
-  const editStory = (title, bodytext, id) => {
-    const queryString = `
-      UPDATE stories
-      SET title = $1, bodytext = $2
-      WHERE id = $3 
+  const editStory = (title, bodytext, id, author_id) => {
+    let queryString = `UPDATE stories `;
+    let queryParams = [];
+
+    if (title) {
+      queryParams.push(title);
+      queryString += `SET title = $${queryParams.length} `;
+    }
+    if (bodytext) {
+      if (queryParams.length === 1) {
+        queryString += `, `;
+      } else {
+        queryString += `SET `
+      }
+      queryParams.push(bodytext);
+      queryString += `bodytext = $${queryParams.length} `;
+    }
+    queryParams.push(id, author_id);
+    queryString += `
+      WHERE id = $${queryParams.length - 1}
+      AND author_id = $${queryParams.length}
       RETURNING *;
     `;
-    const queryParams = [title, bodytext, id];
-     return pool
+    return pool
       .query(queryString, queryParams)
       .then(data => data.rows[0])
       .catch(error => console.error(error.message));

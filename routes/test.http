@@ -1,1 +1,57 @@
-http://localhost:8080/api/stories/2
+# TESTING THE API ENDPOINTS
+
+
+#=============================
+# TEST 1. LOGIN USER #1
+# http://localhost:8080/login/1
+#=============================
+
+#=============================
+# TEST 2. GET ALL STORIES (UP TO LIMIT OF 10)
+# http://localhost:8080/api/stories
+#=============================
+
+
+#=============================
+# TEST 3. GET STORY #2
+# http://localhost:8080/api/stories/2
+#=============================
+
+
+#=============================
+# TEST 4. POST STORY
+# POST http://localhost:8080/api/stories HTTP/1.1
+# content-type: application/json
+
+# {
+#   "title": "Test Story",
+#   "bodytext": "POSTing a Story."
+# }
+#=============================
+
+
+#=============================
+# TEST 5. POST TWIST TO STORY #2
+# POST http://localhost:8080/api/twists HTTP/1.1
+# content-type: application/json
+
+# { 
+#   "story_id": 2,
+#   "parent_id": 10,
+#   "bodytext": "POSTing a Twist"
+#  }
+#=============================
+
+
+#=============================
+# TEST 6. ACCEPT TWIST #3
+# PUT http://localhost:8080/api/twists/3/accept
+# twist_id comes from req.params.id; author_id comes from req.session.user_id
+#=============================
+
+
+#=============================
+# TEST 7. COMPLETE STORY #2
+# PUT http://localhost:8080/api/stories/2/complete
+# story_id comes from req.params.id; author_id comes from req.session.user_id
+#=============================
