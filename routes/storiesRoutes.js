@@ -13,6 +13,7 @@ module.exports = (dbStories, dbTwists) => {
       .then(stories => res.json({ stories }))
       .catch(err => res.status(500).json({ error: err.message }));
   });
+  
   // GET STORY
   router.get("/:id", (req, res) => {
     const { id } = req.params;
