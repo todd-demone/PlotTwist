@@ -17,11 +17,11 @@ $(() => {
     // Remove any rendered components from the document, one by one
     // starting with $latestStories
     $allStories.detach();
-    $storyAndTwists.detach();
-    $newStoryForm.detach();
+    // $storyAndTwists.detach();
+    // $newStoryForm.detach();
     // detach other components here
 
-    // Append a component to the #main-content element on the html page. 
+    // Append a component to the #main-content element on the html page.
     // Which component gets appended depends on the parameter handed to this function
     switch (item) {
       case 'stories':
