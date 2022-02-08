@@ -4,16 +4,16 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (dbStories, dbTwists) => {
-  
+
   // GET STORIES
   router.get("/", (_req, res) => {
     const limit = 10;
-    
+
     dbStories.getStories(limit)
-      .then(stories => res.json({ stories }))
+      .then(stories => res.send( stories ))
       .catch(err => res.status(500).json({ error: err.message }));
   });
-  
+
   // GET STORY
   router.get("/:id", (req, res) => {
     const { id } = req.params;
@@ -43,7 +43,7 @@ module.exports = (dbStories, dbTwists) => {
     }
     const { title, bodytext } = req.body;
     dbStories.postStory(author_id, title, bodytext)
-      .then(story => res.json({ story })) 
+      .then(story => res.json({ story }))
       .catch(err => res.status(500).json({ error: err.message }));
   });
 
@@ -58,13 +58,13 @@ module.exports = (dbStories, dbTwists) => {
       .then(story => {
         if (!story) {
           return res.status(404).send(`You cannot mark this story as complete because (a) you are not the authorized user or (b) the story doesn't exist.`)
-        }  
+        }
         res.json({ story })
         // res.status(200).send();
       })
-      .catch(err => res.status(500).json({ error: err.message }));      
+      .catch(err => res.status(500).json({ error: err.message }));
   });
-  
+
   // "DELETE" STORY
   router.put("/:id/delete", (req, res) => {
     const { id } = req.params;
