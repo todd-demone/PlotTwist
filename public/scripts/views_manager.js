@@ -17,7 +17,7 @@ $(() => {
     // Remove any rendered components from the document, one by one
     // starting with $latestStories
     $allStories.detach();
-    // $storyAndTwists.detach();
+    $singleStory.detach();
     // $newStoryForm.detach();
     // detach other components here
 
@@ -27,8 +27,8 @@ $(() => {
       case 'stories':
         $allStories.appendTo($main);
         break;
-      case 'story':
-        $detailedStory.appendTo($main);
+      case 'singleStory':
+        $singleStory.appendTo($main);
         break;
       case  'storyForm':
         $newStoryForm.appendTo($main);
