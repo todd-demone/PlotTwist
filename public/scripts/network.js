@@ -35,7 +35,7 @@ const deleteStory = function(story_id) {
     method: "PUT",
     url: `/api/stories/${story_id}/delete`,
   });
-}
+};
 
 const updateStory = function(story_id, data) {
   return $.ajax({
@@ -43,4 +43,19 @@ const updateStory = function(story_id, data) {
     url: `/api/stories/${story_id}/edit`,
     data,
   });
-}
+};
+
+const createTwist = function(data) {
+  return $.ajax({
+    method: "POST",
+    url: `/api/twists`,
+    data,
+  });
+};
+
+const acceptTwist = function(twist_id) {
+  return $.ajax({
+    method: "PUT",
+    url: `/api/twists/${twist_id}`,
+  })
+};
