@@ -6,7 +6,7 @@ $(() => {
   <p>Loading...</>
   </section>
   `);
-      
+  
   window.$singleStory = $singleStory;
   
   window.singleStory = {};
@@ -21,10 +21,13 @@ $(() => {
   
   function addSingleStory(data) {
     let lastAcceptedId = 0;
+    const userId = Number(data.user_id);
+    const storyAuthorId = data.story.author_id;
+    const isOriginalAuthor = userId === storyAuthorId;
     
     clearSingleStory();
     
-    const storyEl = story.createStory(data.story);
+    const storyEl = story.createStory(data.story, isOriginalAuthor);
     addElement(storyEl);
     
     for (const twist of data.twists) {
@@ -51,9 +54,6 @@ $(() => {
     getNestedTwists(lastAcceptedId);
 
     const topLevel = nestedTwists[0].depth;
-    const user_id = Number(data.user_id);
-    const author_id = data.story.author_id;
-    const isOriginalAuthor = user_id === author_id;
     for (const twist of nestedTwists) {
       const twistEl = window.twist.createUnacceptedTwist(twist, isOriginalAuthor, topLevel);
       addElement(twistEl);
