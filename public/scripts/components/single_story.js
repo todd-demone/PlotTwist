@@ -50,8 +50,12 @@ $(() => {
 
     getNestedTwists(lastAcceptedId);
 
+    const topLevel = nestedTwists[0].depth;
+    const user_id = Number(data.user_id);
+    const author_id = data.story.author_id;
+    const isOriginalAuthor = user_id === author_id;
     for (const twist of nestedTwists) {
-      const twistEl = window.twist.createUnacceptedTwist(twist);
+      const twistEl = window.twist.createUnacceptedTwist(twist, isOriginalAuthor, topLevel);
       addElement(twistEl);
     }
   };

@@ -17,13 +17,14 @@ module.exports = (dbStories, dbTwists) => {
   // GET STORY
   router.get("/:id", (req, res) => {
     const { id } = req.params;
+    const {user_id} = req.session;
     let story;
     let twists;
     dbStories.getStory(id)
       .then(result => story = result)
       .then(() => dbTwists.getTwists(id))
       .then(result => twists = result)
-      .then(() => res.json({ story, twists }))
+      .then(() => res.json({ user_id, story, twists }))
       .catch(err => res.status(500).json({ error: err.message }));
   });
 
