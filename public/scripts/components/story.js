@@ -1,10 +1,11 @@
 $(() => {
 
   window.story = {};
-  
+
   function createStory(story, isOriginalAuthor) {
+    console.log("inside createStory function")
     return `
-    <div class="story" style="background-color: white; margin-bottom: 0;">  
+    <div class="story" style="background-color: white; margin-bottom: 0;">
       <div class="story__header" style="display: flex;">
         <div class="story__usericon"><img src="https://i.imgur.com/73hZDYK.png" width="25" height="25"></div>
         <div class="story__username">Posted by ${story.username}</div>

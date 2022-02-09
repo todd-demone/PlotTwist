@@ -17,7 +17,7 @@ $(() => {
     // Remove any rendered components from the document, one by one
     // starting with $latestStories
     $allStories.detach();
-    $singleStory.detach();
+    // $singleStory.detach();
     // $newStoryForm.detach();
     // detach other components here
 

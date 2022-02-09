@@ -17,15 +17,15 @@ $(() => {
   window.allStories.clearStories = clearStories;
 
   function addStoryCard(storyCard) {
-    console.log("storyCard:", storyCard)
     $allStories.append(storyCard);
   }
 
   function addStories(stories) {
     clearStories();
-    for (const story of stories) {
-      // const storyCard = storyCard.createStoryCard(story);
-      const storyCard = story.bodytext;
+    for (const data of stories) {
+      console.log("data:", data)
+      console.log("story Object", story)
+      const storyCard = story.createStory(data, false);
       addStoryCard(storyCard);
     }
   }
