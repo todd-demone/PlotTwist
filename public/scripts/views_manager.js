@@ -18,7 +18,7 @@ $(() => {
     // starting with $latestStories
     $allStories.detach();
     $singleStory.detach();
-    // $newStoryForm.detach();
+    $newStoryForm.detach();
     // detach other components here
 
     // Append a component to the #main-content element on the html page.
