@@ -1,7 +1,7 @@
 INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (1,  1,  0, 'Mr. Dursley stuck his head out of the window.  Suddenly the owl grabbed him by his mop of hair and lifted him into the sky!');
 INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (1,  2,  0, 'Harry Potter then came and magicked really good. The End.');
 INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (2,  2,  0, 'it was the age of wisdom, it was the age of foolishness,');
-INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (2,  2,  3, 'actually it was just the best of times.');
+INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (2,  2,  0, 'actually it was just the best of times.');
 INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (2,  3,  4, 'it was the epoch of belief, it was the epoch of incredulity, ');
 INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (2,  1,  5, 'it was the season of Light, it was the season of Darkness, ');
 INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (2,  4,  6, 'it was the spring of hope, it was the winter of despair, ');

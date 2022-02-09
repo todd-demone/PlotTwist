@@ -40,7 +40,7 @@ $(() => {
         addElement(twistEl);
       }
     }
-    
+
     // if story is marked 'completed', stop here - do not render newTwistForm or any unacceptedTwists
     if (data.story.completed) {
       return;
@@ -77,12 +77,12 @@ $(() => {
   ////////////////////
   // Event Handlers //
   ////////////////////
-  
-  // Mark a story complete 
+
+  // Mark a story complete
   $(".single_story").on("click", '.story__complete_button', function() {
     window.singleStory.clearSingleStory();
     // is the data object available here? can I add it to the event object in jquery?
-    completeStory(data.story.story_id) 
+    completeStory(data.story.story_id)
       .then(function(response) {
         window.singleStory.clearSingleStory();
         window.singleStory.addSingleStory(response);
@@ -92,7 +92,7 @@ $(() => {
 
   // Submit a twist
   const $newTwistForm = $('.new_twist__form')
-  
+
   $newTwistForm.on("submit", function(event) {
     const data = $(this).serialize();
     event.preventDefault();
@@ -102,7 +102,7 @@ $(() => {
         // createUnacceptedTwist
         // append unacceptedTwist below parent?
       })
-    
+
   });
 
   // Vote for a twist
