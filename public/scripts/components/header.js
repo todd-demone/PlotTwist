@@ -7,5 +7,10 @@ $(() => {
       views_manager.show('singleStory')
     })
   });
-  $("body").append()
+
+  const $pageHeader = $('#page-header')
+  $pageHeader.append(`
+  <img src = "" alt="PlotTwist Logo">
+  <button id="create_story_button">
+  `)
 });
