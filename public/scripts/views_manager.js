@@ -16,9 +16,9 @@ $(() => {
     // Wipe the document clean
     // Remove any rendered components from the document, one by one
     // starting with $latestStories
-    // $allStories.detach();
-    // $singleStory.detach();
-    // $newStoryForm.detach();
+    $allStories.detach();
+    $singleStory.detach();
+    $newStoryForm.detach();
     // detach other components here
 
     // Append a component to the #main-content element on the html page.
