@@ -17,8 +17,13 @@ $(() => {
     // Remove any rendered components from the document, one by one
     // starting with $latestStories
     $allStories.detach();
+<<<<<<< HEAD
     // $singleStory.detach();
     // $newStoryForm.detach();
+=======
+    $singleStory.detach();
+    $newStoryForm.detach();
+>>>>>>> 63f3fbf5b6825ba800a4304b26018e12b39627db
     // detach other components here
 
     // Append a component to the #main-content element on the html page.
