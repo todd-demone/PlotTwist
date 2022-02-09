@@ -40,17 +40,14 @@ $(() => {
         addElement(twistEl);
       }
     }
-<<<<<<< HEAD
-=======
     
     // if story is marked 'completed', stop here - do not render newTwistForm or any unacceptedTwists
     if (data.story.completed) {
       return;
     }
 
-    const newTwistFormEl = newTwistForm.createNewTwistForm(data.story);
+    const newTwistFormEl = window.newTwistForm.createNewTwistForm(data.story);
     addElement(newTwistFormEl);
->>>>>>> 63f3fbf5b6825ba800a4304b26018e12b39627db
 
     addElement(`<hr style="margin: 2.5rem 0;">`);
 
@@ -77,9 +74,6 @@ $(() => {
   window.singleStory.clearSingleStory = clearSingleStory;
   window.singleStory.addSingleStory = addSingleStory;
 
-<<<<<<< HEAD
-});
-=======
   ////////////////////
   // Event Handlers //
   ////////////////////
@@ -100,7 +94,7 @@ $(() => {
   const $newTwistForm = $('.new_twist__form')
   
   $newTwistForm.on("submit", function(event) {
-    const data = $newTwistForm.serialize();
+    const data = $(this).serialize();
     event.preventDefault();
     createTwist(data)
       .then(function(response) {
@@ -124,4 +118,3 @@ $(() => {
   });
 
 });
->>>>>>> 63f3fbf5b6825ba800a4304b26018e12b39627db

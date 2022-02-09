@@ -31,7 +31,7 @@ $(() => {
         ${ isOriginalAuthor && topLevel === twist.depth ?  `<div class="unaccepted_twist__accept_button">Accept</div>` : `<div></div>`}
       </div>
     </div>
-    <div class="new_twist" style="display: block; margin-left: calc(${twist.depth} * 20px);">
+    <div class="new_twist" style="display: none; margin-left: calc(${twist.depth} * 20px);">
       <form class="new_twist__form">
         <input type="hidden" name="story_id" value="${twist.story_id}" readonly>
         <input type="hidden" name="parent_id" value=${twist.parent_id}" readonly>
