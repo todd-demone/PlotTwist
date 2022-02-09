@@ -46,7 +46,7 @@ $(() => {
       return;
     }
 
-    const newTwistFormEl = newTwistForm.createNewTwistForm(data.story);
+    const newTwistFormEl = window.newTwistForm.createNewTwistForm(data.story);
     addElement(newTwistFormEl);
 
     addElement(`<hr style="margin: 2.5rem 0;">`);
@@ -94,7 +94,7 @@ $(() => {
   const $newTwistForm = $('.new_twist__form')
 
   $newTwistForm.on("submit", function(event) {
-    const data = $newTwistForm.serialize();
+    const data = $(this).serialize();
     event.preventDefault();
     createTwist(data)
       .then(function(response) {
