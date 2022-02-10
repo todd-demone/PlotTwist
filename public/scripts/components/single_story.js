@@ -1,26 +1,20 @@
 $(() => {
   const nestedTwists = [];
 
-  const $singleStory = $(`
-  <section class="single_story">
-  <p>Loading...</>
-  </section>
-  `);
-
-  window.$singleStory = $singleStory;
-
-  window.singleStory = {};
+///////////////////////
+// Function Defns    //
+///////////////////////
 
   //CLEAR HELPER
   function clearSingleStory() {
     $singleStory.empty();
   };
-
+  
   //ADD TO JQUERY HELPER
   function addElement(element) {
     $singleStory.append(element);
   };
-
+  
   //MAIN FUNCTION DEF
   function addSingleStory(data) {
     let lastAcceptedId = 0;
@@ -71,28 +65,32 @@ $(() => {
     }
   };
 
+//////////////////////
+// Global variables //
+//////////////////////
+
+  const $singleStory = $(`
+  <section class="single_story">
+  <p>Loading...</>
+  </section>
+  `);
+  window.$singleStory = $singleStory;
+  window.singleStory = {};
   window.singleStory.clearSingleStory = clearSingleStory;
   window.singleStory.addSingleStory = addSingleStory;
 
   ////////////////////
   // Event Handlers //
   ////////////////////
+  
+  // EVENT: SHOW TWIST FORM
+  const showForm = function(e) {
+    console.log(e.currentTarget);
+  }
+  $(".unaccepted_twist__show_form_button").on("click", showForm);
 
-  // Mark a story complete
-  $(".single_story").on("click", '.story__complete_button', function() {
-    window.singleStory.clearSingleStory();
-    // is the data object available here? can I add it to the event object in jquery?
-    completeStory(data.story.story_id)
-      .then(function(response) {
-        window.singleStory.clearSingleStory();
-        window.singleStory.addSingleStory(response);
-        views_manager.show('singleStory');
-      });
-  });
-
-  // Submit a twist
-  const $newTwistForm = $('.new_twist__form')
-
+  // EVENT: SUBMIT TWIST
+  const $newTwistForm = $('.new_twist_form');
   $newTwistForm.on("submit", function(event) {
     const data = $(this).serialize();
     event.preventDefault();
@@ -102,19 +100,42 @@ $(() => {
         // createUnacceptedTwist
         // append unacceptedTwist below parent?
       })
-
+      .catch(function(error) {
+        console.error(error);
+        views_manager.show('');
+      });
   });
-
-  // Vote for a twist
+    
+  // EVENT: VOTE FOR TWIST
   $(".single_story").on("click", '.unaccepted_twist__vote_icon', function() {
+    //
   });
 
-  // Show the new twist form
-  $('.single_story').on('click', '.unaccepted_twist__show_form_button', function() {
-  });
-
-  // Accept a twist
+  // EVENT: ACCEPT A TWIST
   $(".single_story").on('click', '.unaccepted_twist__accept_button', function() {
+    //
+  });
+
+  // EVENT: MARK STORY COMPLETED
+  $(".single_story").on("click", '.story__complete_button', function() {
+    window.singleStory.clearSingleStory();
+    getMyDetails()
+      .then(function(user) {
+        completeStory(user.user_id);
+        return user;
+      })
+      .then(function(user) {
+        return getStory(user.user_id);
+      })
+      .then(function(response) {
+        window.singleStory.clearSingleStory();
+        window.singleStory.addSingleStory(response);
+        views_manager.show('singleStory');
+      })
+      .catch(function(error) {
+        console.error(error);
+        views_manager.show('singleStory');
+      });
   });
 
 });

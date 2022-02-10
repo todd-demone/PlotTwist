@@ -27,16 +27,14 @@ $(() => {
       <div class="unaccepted_twist__footer" style="display: flex;">
         <div class="unaccepted_twist__vote_icon">⬆️</div>
         <div class="unaccepted_twist__vote_count">${twist.number_of_votes}</div>
-        <div class="unaccepted_twist__show_form_button">Twist It!</div>
+        <button class="unaccepted_twist__show_form_button">Twist It!</button>
         ${ isOriginalAuthor && topLevel === twist.depth ?  `<div class="unaccepted_twist__accept_button">Accept</div>` : `<div></div>`}
       </div>
-    </div>
-    <div class="new_twist" style="display: none; margin-left: calc(${twist.depth} * 20px);">
-      <form class="new_twist__form">
+      <form class="unaccepted_twist__form" style="display: none; margin-left: calc(${twist.depth} * 20px);">
         <input type="hidden" name="story_id" value="${twist.story_id}" readonly>
-        <input type="hidden" name="parent_id" value=${twist.parent_id}" readonly>
-        <textarea class="new_twist__textarea" name="bodytext" cols="30" rows="10" placeholder="Write a new twist..."></textarea>
-        <button class="new_twist__submit_button" type="submit">Submit</button>
+        <input type="hidden" name="parent_id" value="${twist.parent_id}" readonly>
+        <textarea class="unaccepted_twist__textarea" name="bodytext" cols="30" rows="10" placeholder="Write a new twist..."></textarea>
+        <button class="unaccepted_twist__form__submit_button" type="submit">Submit</button>
       </form>
     </div>
     `;
