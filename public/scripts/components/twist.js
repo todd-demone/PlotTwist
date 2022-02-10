@@ -58,25 +58,25 @@ $(() => {
           console.error(error);
           views_manager.show('stories');
         });
-  });
+    });
 
-  $ut.on('click', '.unaccepted_twist__accept_button', function() {
-    acceptTwist(twist.id)
-      .then(function(result) { 
-        return getStory(result.twist.story_id);
-      })
-      .then(function(singleStoryData) {
-        window.singleStory.addSingleStory(singleStoryData);
-        views_manager.show('singleStory');
-      })
-      .catch(function(error) {
-        console.error(error);
-        views_manager.show('singleStory');
-      });
-  });
+    $ut.on('click', '.unaccepted_twist__accept_button', function() {
+      acceptTwist(twist.id)
+        .then(function(result) { 
+          return getStory(result.twist.story_id);
+        })
+        .then(function(singleStoryData) {
+          window.singleStory.addSingleStory(singleStoryData);
+          views_manager.show('singleStory');
+        })
+        .catch(function(error) {
+          console.error(error);
+          views_manager.show('singleStory');
+        });
+    });
 
-  return $ut;
-}
+    return $ut;
+  }
 
   window.twist.createAcceptedTwist = createAcceptedTwist;
   window.twist.createUnacceptedTwist = createUnacceptedTwist;
