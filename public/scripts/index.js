@@ -9,11 +9,5 @@ $(() => {
     views_manager.show('stories');
   });
 
-  $("body").on("click", ".story", function() {
-    getStory(2)
-    .then(function(storyData) {
-      window.singleStory.addSingleStory(storyData);
-      views_manager.show('singleStory')
-    })
-  });
+
 });
