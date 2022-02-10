@@ -11,8 +11,8 @@ $(() => {
 
 
       if (result) {
-        console.log("result!")
-        $pageHeader.append(`<div class="user-object">USEROBJECT</div>`)
+        console.log("result!",result)
+        $pageHeader.append(`<div class="user-object">Greetings ${result.username}!</div>`)
       }
 
       $("body").on('click', "#logo", function() {
