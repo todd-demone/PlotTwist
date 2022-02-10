@@ -5,9 +5,9 @@ $(() => {
   <p>Loading...</>
   </section>
   `);
-  
+
   window.$singleStory = $singleStory;
-  
+
   window.singleStory = {};
 
 ///////////////////////
@@ -18,12 +18,12 @@ $(() => {
   function clearSingleStory() {
     $singleStory.empty();
   };
-  
+
   //ADD TO JQUERY HELPER
   function addElement(element) {
     $singleStory.append(element);
   };
-  
+
   //MAIN FUNCTION DEF
   function addSingleStory(data) {
     window.$singleStory.empty();
@@ -58,7 +58,11 @@ $(() => {
     // Step 4. add a horizontal break line
     addElement(`<hr style="margin: 2.5rem 0;">`);
 
-    // Step 5. 
+    if (!data.twists.length) {
+      return;
+    };
+
+    // Step 5.
     function getNestedTwists(myParent_id) {
       const twists = data.twists.filter(twist => twist.accepted === false);
 
@@ -78,15 +82,15 @@ $(() => {
       addElement($twistEl);
     };
   };
-  
+
 //////////////////////
 // Global variables //
 //////////////////////
 
-  
+
   window.singleStory.clearSingleStory = clearSingleStory;
   window.singleStory.addSingleStory = addSingleStory;
-    
+
   // EVENT: VOTE FOR TWIST
   $(".single_story").on("click", '.unaccepted_twist__vote_icon', function() {
     //
