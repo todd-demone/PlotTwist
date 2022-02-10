@@ -58,6 +58,10 @@ $(() => {
     // Step 4. add a horizontal break line
     addElement(`<hr style="margin: 2.5rem 0;">`);
 
+    if (!data.twists.length) {
+      return;
+    };
+    
     // Step 5. 
     function getNestedTwists(myParent_id) {
       const twists = data.twists.filter(twist => twist.accepted === false);
