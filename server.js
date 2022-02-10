@@ -14,6 +14,7 @@ const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const pool = new Pool(dbParams);
 pool.connect();
+const dbUsers = require('./db/usersDb')(pool);
 const dbStories = require('./db/storiesDb')(pool);
 const dbTwists = require('./db/twistsDb')(pool);
 const dbVotes = require('./db/votesDb')(pool);
@@ -44,12 +45,14 @@ app.use(cookieSession({
 
 // Separated Routes for each Resource
 const loginRoutes = require("./routes/loginRoutes");
+const userRoutes = require("./routes/userRoutes.js")
 const storiesRoutes = require("./routes/storiesRoutes");
 const twistsRoutes = require("./routes/twistsRoutes");
 const votesRoutes = require("./routes/votesRoutes");
 
 // Mount all resource routes
 app.use("/login", loginRoutes());
+app.use("/api/users", userRoutes(dbUsers));
 app.use("/api/stories", storiesRoutes(dbStories, dbTwists));
 app.use("/api/twists", twistsRoutes(dbTwists));
 app.use("/api/votes", votesRoutes(dbVotes));

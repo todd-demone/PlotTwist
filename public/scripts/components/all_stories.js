@@ -23,8 +23,6 @@ $(() => {
   function addStories(stories) {
     clearStories();
     for (const data of stories) {
-      console.log("data:", data)
-      console.log("story Object", story)
       const storyCard = story.createStory(data, false);
       addStoryCard(storyCard);
     }

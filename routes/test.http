@@ -3,7 +3,7 @@
 
 #=============================
 # TEST 1. LOGIN USER #1
-# http://localhost:8080/login/1
+http://localhost:8080/login/1
 #=============================
 
 #=============================
@@ -64,6 +64,12 @@
 
 #=============================
 # TEST 9. DELETE VOTE
-DELETE http://localhost:8080/api/votes/delete/4
+# DELETE http://localhost:8080/api/votes/delete/4
 # # vote_id comes from req.params.id; author_id comes from req.session.user_id
+#=============================
+
+#=============================
+# TEST 10. USER OBJECT
+# GET http://localhost:8080/api/users
+# # user_id comes from req.session.user_id
 #=============================

@@ -11,7 +11,6 @@ module.exports = (dbTwists) => {
   router.get("/story/:story_id/accepted", (req, res) => {
     const { story_id } = req.params;
 
-
     dbTwists.getStoryAcceptedTwists(story_id)
       .then(twists => res.json({ twists }))
       .catch(err => res.status(500).json({ error: err.message }));
@@ -63,7 +62,7 @@ module.exports = (dbTwists) => {
     const author_id = req.session.user_id;
 
     dbTwists(id, author_id)
-      .then(data => res.status(200).send())
+      .then(() => res.status(200).send())
       .catch(err => res.status(500).json({ error: err.message }));
   });
 

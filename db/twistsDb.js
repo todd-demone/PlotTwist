@@ -154,7 +154,6 @@ module.exports = (pool) => {
     return pool
       .query(queryString, queryParams)
       .then(data => {
-        console.log(data.rows)
         return data.rows[0]
       })
       .catch(error => console.error(error.message));

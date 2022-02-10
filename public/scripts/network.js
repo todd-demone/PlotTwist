@@ -59,3 +59,25 @@ const acceptTwist = function(twist_id) {
     url: `/api/twists/${twist_id}`,
   })
 };
+
+const createVote = function(twist_id) {
+  return $.ajax({
+    method: "POST",
+    url: `api/votes/${twist_id}`
+  })
+};
+
+const deleteVote = function(vote_id) {
+  return $.ajax({
+    method: "DELETE",
+    url: `api/votes/delete/${vote_id}`,
+  })
+
+};
+
+const checkLoggedIn = function() {
+  return $.ajax({
+    method: "GET",
+    url: `api/login/check`,
+  })
+}
