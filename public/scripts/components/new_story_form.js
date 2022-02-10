@@ -30,10 +30,10 @@ $(() => {
   });
 
 // temporary testing code
-  const $storyFormButton = $(`<button class="new_story_form_button">Create a Story</button>`);
-  $storyFormButton.appendTo('#main-content');
-  $storyFormButton.on('click', function() {
-    views_manager.show('storyForm');
-  })
-  
+  // const $storyFormButton = $(`<button class="new_story_form_button">Create a Story</button>`);
+  // $storyFormButton.appendTo('#main-content');
+  // $storyFormButton.on('click', function() {
+  //   views_manager.show('storyForm');
+  // })
+
 });
