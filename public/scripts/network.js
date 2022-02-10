@@ -75,9 +75,10 @@ const deleteVote = function(vote_id) {
 
 };
 
-const checkLoggedIn = function() {
+const getUserObject = function() {
   return $.ajax({
     method: "GET",
-    url: `api/login/check`,
+    url: `api/users`,
+    dataType: 'json',
   })
 }
