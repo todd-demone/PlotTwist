@@ -56,7 +56,7 @@ const createTwist = function(data) {
 const acceptTwist = function(twist_id) {
   return $.ajax({
     method: "PUT",
-    url: `/api/twists/${twist_id}`,
+    url: `/api/twists/accept/${twist_id}`,
   })
 };
 

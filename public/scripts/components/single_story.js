@@ -1,5 +1,14 @@
 $(() => {
-  const nestedTwists = [];
+  let nestedTwists = [];
+  const $singleStory = $(`
+  <section class="single_story">
+  <p>Loading...</>
+  </section>
+  `);
+  
+  window.$singleStory = $singleStory;
+  
+  window.singleStory = {};
 
 ///////////////////////
 // Function Defns    //
@@ -17,16 +26,18 @@ $(() => {
   
   //MAIN FUNCTION DEF
   function addSingleStory(data) {
+    window.$singleStory.empty();
+    nestedTwists = [];
     let lastAcceptedId = 0;
     const userId = Number(data.user_id); /// CHECK USER IS ALLOWED FOR ACCEPT BUTTONS
     const storyAuthorId = data.story.author_id;
     const isOriginalAuthor = userId === storyAuthorId;
 
-    clearSingleStory();
-
+    // step 1. add a story card to $singleStory
     const storyEl = story.createStory(data.story, isOriginalAuthor);
     addElement(storyEl);
 
+    // step 2. add accepted twists to $singleStory
     for (const twist of data.twists) {
       if (twist.accepted) {
         lastAcceptedId = twist.id;
@@ -35,16 +46,19 @@ $(() => {
       }
     }
 
-    // if story is marked 'completed', stop here - do not render newTwistForm or any unacceptedTwists
+    // If story is marked 'completed', stop here - do not render newTwistForm or any unacceptedTwists
     if (data.story.completed) {
       return;
     }
 
+    // Step 3. add top-level twist form to $singleStory
     const newTwistFormEl = window.newTwistForm.createNewTwistForm(data.story);
     addElement(newTwistFormEl);
 
+    // Step 4. add a horizontal break line
     addElement(`<hr style="margin: 2.5rem 0;">`);
 
+    // Step 5. 
     function getNestedTwists(myParent_id) {
       const twists = data.twists.filter(twist => twist.accepted === false);
 
@@ -54,57 +68,24 @@ $(() => {
           getNestedTwists(twist.id);
         }
       }
-    };
 
+          };
     getNestedTwists(lastAcceptedId);
 
     const topLevel = nestedTwists[0].depth;
     for (const twist of nestedTwists) {
-      const twistEl = window.twist.createUnacceptedTwist(twist, isOriginalAuthor, topLevel);
-      addElement(twistEl);
-    }
+      const $twistEl = window.twist.createUnacceptedTwist(twist, isOriginalAuthor, topLevel);
+      addElement($twistEl);
+    };
   };
-
+  
 //////////////////////
 // Global variables //
 //////////////////////
 
-  const $singleStory = $(`
-  <section class="single_story">
-  <p>Loading...</>
-  </section>
-  `);
-  window.$singleStory = $singleStory;
-  window.singleStory = {};
+  
   window.singleStory.clearSingleStory = clearSingleStory;
   window.singleStory.addSingleStory = addSingleStory;
-
-  ////////////////////
-  // Event Handlers //
-  ////////////////////
-  
-  // EVENT: SHOW TWIST FORM
-  const showForm = function(e) {
-    console.log(e.currentTarget);
-  }
-  $(".unaccepted_twist__show_form_button").on("click", showForm);
-
-  // EVENT: SUBMIT TWIST
-  const $newTwistForm = $('.new_twist_form');
-  $newTwistForm.on("submit", function(event) {
-    const data = $(this).serialize();
-    event.preventDefault();
-    createTwist(data)
-      .then(function(response) {
-        // hide newTwistForm
-        // createUnacceptedTwist
-        // append unacceptedTwist below parent?
-      })
-      .catch(function(error) {
-        console.error(error);
-        views_manager.show('');
-      });
-  });
     
   // EVENT: VOTE FOR TWIST
   $(".single_story").on("click", '.unaccepted_twist__vote_icon', function() {
