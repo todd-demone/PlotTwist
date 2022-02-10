@@ -8,4 +8,6 @@ $(() => {
     // Append the stories to the #main-content element on the html page
     views_manager.show('stories');
   });
+
+
 });

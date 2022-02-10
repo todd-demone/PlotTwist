@@ -3,8 +3,8 @@ $(() => {
   window.story = {};
 
   function createStory(story, isOriginalAuthor) {
-    const $s = $(`
-    <div class="story" style="background-color: white; margin-bottom: 2.5rem;">
+    let $storyObj = $(`
+    <div class="story" id="${story.id}" style="background-color: white; margin-bottom: 2.5rem;">
       <div class="story__header" style="display: flex;">
         <div class="story__usericon"><img src="https://i.imgur.com/73hZDYK.png" width="25" height="25"></div>
         <div class="story__username">Posted by ${story.username}</div>
@@ -16,7 +16,7 @@ $(() => {
     </div>
     `);
 
-    $s.on('click', '.story__complete_button', function() {
+    $storyObj.on('click', '.story__complete_button', function() {
       completeStory(story.id)
         .then(function(result) {
           return getStory(result.story.id);
@@ -31,9 +31,22 @@ $(() => {
         });
     });
 
-    return $s;
+
+    $storyObj.on("click", function() {
+      console.log("storyID:",story.id)
+      getStory(story.id)
+      .then(function(storyData) {
+        console.log("storyData:",storyData)
+        window.singleStory.addSingleStory(storyData);
+        views_manager.show('singleStory')
+      })
+    });
+
+    return $storyObj;
   };
 
   window.story.createStory = createStory;
+
+
 
 });
