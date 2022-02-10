@@ -12,6 +12,7 @@ header {
   background: white;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
   padding: 20px;
 }
@@ -21,7 +22,43 @@ main {
 }
 
 .story {
+
+  .story__username {
+    margin-right: 5px;
+  }
+
+  .story__usericon {
+    margin-right: 10px;
+  }
   padding: 20px;
+}
+
+.twist {
+  padding: 20px;
+
+  .twist__header {
+    display: flex;
+    align-items: center;
+  }
+  .twist__username {
+    margin-right: 5px;
+  }
+  .twist__usericon {
+    margin-right: 10px;
+  }
+
+  .unaccepted_twist__footer {
+    display: flex;
+    justify-content: space-between;
+    .votes {
+      .unaccepted_twist__vote_icon {
+        margin-right: 10px;
+      }
+      display: flex;
+    }
+  }
+
+
 }
 
 

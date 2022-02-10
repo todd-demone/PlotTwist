@@ -9,7 +9,6 @@ $(() => {
 
 
           if (result) {
-            console.log("result!",result)
             $pageHeader.append(`<div class="user-object">Greetings ${result.username}!</div>`)
           }
 
