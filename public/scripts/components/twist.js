@@ -18,14 +18,14 @@ $(() => {
   function createUnacceptedTwist(twist, isOriginalAuthor, topLevel, userId) {
 
         const $ut = $(`
-          <div class="depth--${twist.depth} twist unaccepted_twist" style="margin-bottom: 2.5rem; margin-left: calc(${twist.depth} * 20px); background-color: white;">
-            <div class=" twist__header unaccepted_twist__header" style="display: flex;">
+          <div class="depth--${twist.depth} twist unaccepted_twist" style="margin-left: calc(${twist.depth} * 20px);">
+            <div class=" twist__header unaccepted_twist__header">
               <div class="twist__usericon unaccepted_twist__usericon"><i class="fa-regular fa-circle-user fa-xl"></i></div>
               <div class="twist__username unaccepted_twist__username">Posted by ${twist.username}</div>
               <div class="unaccepted_twist__date">${moment(twist.date_created).fromNow()}</div>
             </div>
             <p class="unaccepted_twist__bodytext">${twist.bodytext}</p>
-            <div class="unaccepted_twist__footer" style="display: flex;">
+            <div class="unaccepted_twist__footer">
               <div class="votes">
                 <div class="unaccepted_twist__vote_icon"><i class="fa-solid fa-circle-up fa-xl"></i></div>
                 <div class="unaccepted_twist__vote_count">${twist.number_of_votes}</div>
@@ -33,7 +33,7 @@ $(() => {
               ${ userId ? `<button class="unaccepted_twist__show_form_button">Twist It!</button>` : `<div></div>` }
               ${ isOriginalAuthor && topLevel === twist.depth ?  `<div class="unaccepted_twist__accept_button">Accept</div>` : `<div></div>`}
             </div>
-            <form class="unaccepted_twist__form" style="display: none; margin-left: calc(${twist.depth} * 20px);">
+            <form class="unaccepted_twist__form" style="margin-left: calc(${twist.depth} * 20px);">
               <input type="hidden" name="story_id" value="${twist.story_id}" readonly>
               <input type="hidden" name="parent_id" value="${twist.id}" readonly>
               <textarea class="unaccepted_twist__textarea" name="bodytext" cols="30" rows="10" placeholder="Write a new twist..."></textarea>

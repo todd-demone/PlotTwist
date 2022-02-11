@@ -149,6 +149,8 @@ main {
 
 .twist {
   padding: 20px;
+  margin-bottom: 2.5rem;
+  background-color: white;
 
   .twist__header {
     display: flex;
@@ -170,6 +172,10 @@ main {
       }
       display: flex;
     }
+  }
+
+  .unaccepted_twist__form {
+    display: none;
   }
 }
 
