@@ -42,7 +42,7 @@ $(() => {
     `);
 
     $ut.on('click', '.unaccepted_twist__show_form_button', function() {
-      $(this).parent().next().show();
+      $(this).parent().next().slideToggle();
     });
 
     $ut.on('submit', '.unaccepted_twist__form', function(e){

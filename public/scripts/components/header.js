@@ -9,7 +9,7 @@ $(() => {
 
 
           if (result) {
-            $pageHeader.append(`<div class="box"><div class="user-object">Greetings ${result.username}!</div></div>`)
+            $pageHeader.append(`<div class="box"><div class="user-object">Greetings <span>${result.username}!</span></div></div>`)
           }
 
           $("body").on('click', "#logo", function() {
