@@ -2,23 +2,27 @@ $(() => {
   const $pageHeader = $('.header__container')
   $pageHeader.append(`
         <div class="box"><img src="media/workingLogo.png" alt="PlotTwist Logo" id="logo"></img></div>
-        <div class="box middle_box" id="#middle-header-box">
+        <div class="box middle_box" id="middle-header-box">
           <button class="new_story_form_button">Create a Story</button>
         </div>
-        <div class="box userObject"></div>
+        <div class="box user_object"></div>
         `)
         getUserObject()
         .then(result => {
 
           if (result) {
-            $('.userObject').html(`
-            <div class="logout_button_box">
-              <h2>Greetings ${result.username}!</h2>
-              <button type="submit" class="logout_button">Logout</button
-            </div>`)
+            $('.user_object').html(`
+            <div id="user_object__box">
+              <div class="user_object__usericon">
+                <i class="fa-regular fa-circle-user fa-5x"></i>
+              </div>
+              <h2 id="username">${result.username}</h2>
+              <button type="submit" class="logout_button">Logout</button>
+            </div>
+            `)
 
           } else {
-            $('.userObject').html(`
+            $('.user_object').html(`
               <div class="login_button">
                 <button class="login_button" type="submit">Login</button>
               </div>`)
@@ -29,7 +33,7 @@ $(() => {
             console.log("logging out")
             logout()
               .then(() => {
-                $('.userObject').empty().html(`
+                $('.user_object').empty().html(`
               <div class="login_button">
                 <button class="login_button" type="submit">Login</button>
               </div>`)

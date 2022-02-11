@@ -41,11 +41,11 @@ header {
   margin-right: auto;
   height: 150px;
 }
-.box:last-child > .userObject {
+.box:last-child > .user_object {
   margin-left: auto;
 }
 
-.middle_box {
+#middle-header-box {
   display: flex;
   justify-content: center;
 }
@@ -61,16 +61,22 @@ header {
   font-size: 2em;
 }
 
-.userObject {
-  display: flex;
+.user_object {
+  display:flex;
   justify-content: flex-end;
-  flex-direction: column;
 }
 
-.logout_button_box {
+#user_object__box {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+}
+
+#username {
+  color: red;
+  font-size: 1.5em;
+  margin: 0 0;
 }
 
 .logout_button {
