@@ -18,7 +18,7 @@ $(() => {
   function createUnacceptedTwist(twist, isOriginalAuthor, topLevel, userId) {
 
         const $ut = $(`
-          <div class="depth--${twist.depth} twist unaccepted_twist" style="margin-left: calc(${twist.depth} * 20px);">
+          <div class="depth--${twist.depth} twist unaccepted_twist" style="margin-left: calc(${twist.depth} * 20px + 32px);">
             <div class=" twist__header unaccepted_twist__header">
               <div class="twist__usericon unaccepted_twist__usericon"><i class="fa-regular fa-circle-user fa-xl"></i></div>
               <div class="twist__username unaccepted_twist__username">Posted by ${twist.username}</div>
@@ -26,11 +26,11 @@ $(() => {
             </div>
             <p class="unaccepted_twist__bodytext">${twist.bodytext}</p>
             <div class="unaccepted_twist__footer">
-              <div class="votes">
+              
                 <div class="unaccepted_twist__vote_icon"><i class="fa-solid fa-circle-up fa-xl"></i></div>
                 <div class="unaccepted_twist__vote_count">${twist.number_of_votes}</div>
-              </div>
-              ${ userId ? `<button class="unaccepted_twist__show_form_button">Twist It!</button>` : `<div></div>` }
+              
+              ${ userId ? `<div class="unaccepted_twist__show_form_button">Twist It!</div>` : `<div></div>` }
               ${ isOriginalAuthor && topLevel === twist.depth ?  `<div class="unaccepted_twist__accept_button">Accept</div>` : `<div></div>`}
             </div>
             <form class="unaccepted_twist__form" style="margin-left: calc(${twist.depth} * 20px);">

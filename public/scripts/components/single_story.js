@@ -36,7 +36,7 @@ $(() => {
     // step 1. add a story card to $singleStory
     const storyEl = story.createStory(data.story, isOriginalAuthor);
     addElement(storyEl);
-
+    
     // step 2. add accepted twists to $singleStory
     for (const twist of data.twists) {
       if (twist.accepted) {
@@ -50,7 +50,7 @@ $(() => {
     if (data.story.completed) {
       return;
     }
-
+    
     // Step 3. add top-level twist form to $singleStory
     if (userId) {
       const newTwistFormEl = window.newTwistForm.createNewTwistForm(data.story, lastAcceptedId);
@@ -58,7 +58,7 @@ $(() => {
     }
 
     // Step 4. add a horizontal break line
-    addElement(`<hr style="margin: 2.5rem 0;">`);
+    addElement(`<hr>`);
 
     if (!data.twists.length) {
       return;
