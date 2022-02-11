@@ -52,8 +52,10 @@ $(() => {
     }
 
     // Step 3. add top-level twist form to $singleStory
-    const newTwistFormEl = window.newTwistForm.createNewTwistForm(data.story);
-    addElement(newTwistFormEl);
+    if (userId) {
+      const newTwistFormEl = window.newTwistForm.createNewTwistForm(data.story, lastAcceptedId);
+      addElement(newTwistFormEl);
+    }
 
     // Step 4. add a horizontal break line
     addElement(`<hr style="margin: 2.5rem 0;">`);
@@ -76,11 +78,15 @@ $(() => {
           };
     getNestedTwists(lastAcceptedId);
 
-    const topLevel = nestedTwists[0].depth;
-    for (const twist of nestedTwists) {
-      const $twistEl = window.twist.createUnacceptedTwist(twist, isOriginalAuthor, topLevel);
-      addElement($twistEl);
-    };
+    if (!nestedTwists.length) {
+      return;
+    } else {
+      const topLevel = nestedTwists[0].depth;
+      for (const twist of nestedTwists) {
+        const $twistEl = window.twist.createUnacceptedTwist(twist, isOriginalAuthor, topLevel, userId);
+        addElement($twistEl);
+      };
+    }
   };
 
 //////////////////////

@@ -1,8 +1,8 @@
 $(() => {
-  const $pageHeader = $('#page-header')
+  const $pageHeader = $('.header__container')
   $pageHeader.append(`
-        <img src="media/workingLogo.png" alt="PlotTwist Logo" id="logo"></img>
-        <button class="new_story_form_button">Create a Story</button>
+        <div class="box"><img src="media/workingLogo.png" alt="PlotTwist Logo" id="logo"></img></div>
+        <div class="box"><button class="new_story_form_button">Create a Story</button></div>
         `)
         getUserObject()
         .then(result => {

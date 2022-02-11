@@ -67,13 +67,26 @@ const createVote = function(twist_id) {
   })
 };
 
-const deleteVote = function(vote_id) {
+const getTwistVotes = function(twist_id) {
   return $.ajax({
+<<<<<<< HEAD
     method: "DELETE",
     url: `/api/votes/delete/${vote_id}`,
+=======
+    method: "GET",
+    url: `api/votes/${twist_id}`
+>>>>>>> main
   })
+}
 
-};
+// FURTHER FUNCTIONALITY
+// const deleteVote = function(vote_id) {
+//   return $.ajax({
+//     method: "DELETE",
+//     url: `api/votes/delete/${vote_id}`,
+//   })
+
+// };
 
 const getUserObject = function() {
   return $.ajax({

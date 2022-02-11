@@ -12,5 +12,12 @@ module.exports = (dbUsers) => {
       .catch(err => res.status(500).json({ error: err.message }));
   });
 
+  //GET A USER OBJECT
+  // router.get("/", (req, res) => {
+  //   const { user_id } = req.session;
+  //   dbUsers.getUserObject(user_id)
+  //     .then(result => res.send(result[0]))
+  //     .catch(err => res.status(500).json({ error: err.message }));
+  // });
   return router;
 };
