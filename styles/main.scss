@@ -110,6 +110,12 @@ main {
         background-color: rgba(26, 26, 27, 0.1);
       }
     }
+
+    .story__completed {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
   .story__title {
     margin: 0 0 1rem;
