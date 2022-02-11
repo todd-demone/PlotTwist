@@ -58,7 +58,7 @@ $(() => {
     }
 
     // Step 4. add a horizontal break line
-    addElement(`<hr>`);
+    // addElement(`<hr>`);
 
     if (!data.twists.length) {
       return;

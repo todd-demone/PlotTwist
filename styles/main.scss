@@ -10,6 +10,7 @@ body {
   background-color: $main-background-colour;
   font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
+  line-height: 1.5;
 }
 
 //////////////
@@ -60,6 +61,11 @@ header {
   height: 80px;
   margin-top: 10px;
   font-size: 2em;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      &:hover {
+        background-color: $main-background-colour;
+        color: #222;
+      }
 }
 
 .user_object {
@@ -115,6 +121,7 @@ main {
 }
 .story {
   flex: 0 0 calc(50% - 2rem);
+  font-size: 1rem;
   margin-left: 2rem;
   margin-bottom: 2.5rem;
   padding: 2rem;
@@ -154,7 +161,7 @@ main {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      border-radius: .3rem;
+      border-radius: 50px;
       transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
       &:hover {
         background-color: $feature-colour;
@@ -185,9 +192,13 @@ main {
 
 .single_story {
   padding: 2.5rem 0;
-  max-width: 1052px;
+  max-width: 1265px;
+  // background-color: #edeff1;
   .story {
+    // max-width: 1052px;
+    font-size: 1.5rem;
     margin-bottom: 2.5rem;
+    margin-left: 0;
     padding: 2rem;
     background-color: #ffffff;
     border-radius: .3rem;
@@ -196,8 +207,8 @@ main {
     }
   }
   .new_twist {
-    flex: 0 0 calc(50% - 2rem);
-    margin-left: 2rem;
+    // max-width: 1052px;
+    font-size: 1.5rem;
     margin-bottom: 2.5rem;
   }
   .new_twist__form {
@@ -224,11 +235,12 @@ main {
 
   }
   hr {
-    margin: 2.5rem 0 2.5rem 2rem;
+    // max-width: 1052px;
+    margin: 2.5rem 0;
   }
   .twist {
-    flex: 0 0 calc(50% - 2rem);
-    margin-left: 2rem;
+    // max-width: 1052px;
+    font-size: 1.5rem;
     margin-bottom: 2.5rem;
     padding: 2rem;
     background-color: white;
@@ -237,7 +249,7 @@ main {
     .twist__header {
       display: flex;
       align-items: center;
-      margin: 0 0 1rem;
+      margin: 0 0 1.5rem;
       height: 2.25rem;
       > * {
         padding-left: 1rem;
@@ -263,7 +275,7 @@ main {
       justify-content: center;
     }
     p.unaccepted_twist__bodytext {
-      margin: 0 0 1rem;
+      margin: 0 0 1.5rem;
     }
     .unaccepted_twist__footer {
       display: flex;
@@ -305,7 +317,7 @@ main {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        border-radius: .3rem;
+        border-radius: 50px;
         transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         &:hover {
           background-color: $feature-colour;
@@ -317,7 +329,7 @@ main {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        border-radius: .3rem;
+        border-radius: 50px;
         transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         &:hover {
           background-color: $feature-colour;
@@ -372,9 +384,14 @@ main {
   color: white;
   border: none;
   width: 150px;
-  height: 40px;
+  height: 3.75rem;
   margin-top: 10px;
   font-size: 1.5em;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      &:hover {
+        background-color: $feature-colour;
+        color: white;
+      }
 }
 
 .new_story_form_button {
