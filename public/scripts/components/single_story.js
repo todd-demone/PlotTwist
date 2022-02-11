@@ -52,7 +52,7 @@ $(() => {
     }
 
     // Step 3. add top-level twist form to $singleStory
-    const newTwistFormEl = window.newTwistForm.createNewTwistForm(data.story);
+    const newTwistFormEl = window.newTwistForm.createNewTwistForm(data.story, lastAcceptedId);
     addElement(newTwistFormEl);
 
     // Step 4. add a horizontal break line

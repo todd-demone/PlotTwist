@@ -15,25 +15,19 @@ $(() => {
     console.log('my post data', data);
     event.preventDefault();
     createStory(data)
-      .then(function() {
-        return listStories();
-      })
-      .then(function(stories) {
-        window.allStories.clearStories;
-        window.allStories.addStories(stories);
-        views_manager.show('stories');
-      })
+    .then(function() {
+      return listStories();
+    })
+    .then(function(stories) {
+      window.allStories.clearStories;
+      window.allStories.addStories(stories);
+      views_manager.show('stories');
+      $newStoryForm.trigger('reset');
+    })
       .catch(function(error) {
         console.error(error);
         views_manager.show('stories');
       })
   });
-
-// temporary testing code
-  // const $storyFormButton = $(`<button class="new_story_form_button">Create a Story</button>`);
-  // $storyFormButton.appendTo('#main-content');
-  // $storyFormButton.on('click', function() {
-  //   views_manager.show('storyForm');
-  // })
 
 });
