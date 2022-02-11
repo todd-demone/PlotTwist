@@ -9,7 +9,7 @@ $(() => {
         <div class="story__usericon"><i class="fa-regular fa-circle-user fa-xl"></i></div>
         <div class="story__username">Posted by ${story.username}</div>
         <div class="story__date">${moment(story.date_created).fromNow()}</div>
-        ${ story.completed === true ? `<div class="story__completed">COMPLETED</div>` : (isOriginalAuthor ?  `<div class="story__complete_button">Complete</div>` : `<div></div>`) }
+        ${ story.completed === true ? `<div class="story__completed">COMPLETED</div>` : (isOriginalAuthor ?  `<div class="story__complete_button">Mark Complete</div>` : `<div></div>`) }
       </div>
       <h2 class="story__title">${story.title}</h2>
       <p class="story__bodytext">${story.bodytext}</p>
