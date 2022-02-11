@@ -8,5 +8,11 @@ module.exports = () => {
     res.redirect('/');
   });
 
+  router.post('/logout', (req,res) => {
+    console.log("in the logout route")
+    req.session = null;
+    res.send({});
+  });
+
   return router;
 };

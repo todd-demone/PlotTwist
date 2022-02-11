@@ -63,14 +63,14 @@ const acceptTwist = function(twist_id) {
 const createVote = function(twist_id) {
   return $.ajax({
     method: "POST",
-    url: `api/votes/${twist_id}`
+    url: `/api/votes/${twist_id}`
   })
 };
 
 const deleteVote = function(vote_id) {
   return $.ajax({
     method: "DELETE",
-    url: `api/votes/delete/${vote_id}`,
+    url: `/api/votes/delete/${vote_id}`,
   })
 
 };
@@ -78,7 +78,15 @@ const deleteVote = function(vote_id) {
 const getUserObject = function() {
   return $.ajax({
     method: "GET",
-    url: `api/users`,
+    url: `/api/users`,
     dataType: 'json',
   })
-}
+};
+
+const logout = function () {
+  console.log("logout function")
+  return $.ajax({
+    method: "POST",
+    url: `/api/login/logout`,
+  })
+};

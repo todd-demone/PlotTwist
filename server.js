@@ -51,7 +51,7 @@ const twistsRoutes = require("./routes/twistsRoutes");
 const votesRoutes = require("./routes/votesRoutes");
 
 // Mount all resource routes
-app.use("/login", loginRoutes());
+app.use("/api/login", loginRoutes());
 app.use("/api/users", userRoutes(dbUsers));
 app.use("/api/stories", storiesRoutes(dbStories, dbTwists));
 app.use("/api/twists", twistsRoutes(dbTwists));
