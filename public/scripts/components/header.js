@@ -12,12 +12,13 @@ $(() => {
             $pageHeader.append(` <div class="box"><div class="user-object">Greetings ${result.username}!</div></div>`)
           }
 
-          $("body").on('click', "#logo", function() {
-            views_manager.show('stories');
-          })
-
+          
         });
-
+        
+        $("body").on('click', "#logo", function() {
+          views_manager.show('stories');
+        })
+        
         //CREATE STORY BUTTON
         $("body").on("click", ".new_story_form_button", function() {
           views_manager.show('storyForm');
