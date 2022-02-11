@@ -26,10 +26,10 @@ $(() => {
             </div>
             <p class="unaccepted_twist__bodytext">${twist.bodytext}</p>
             <div class="unaccepted_twist__footer">
-              
+
                 <div class="unaccepted_twist__vote_icon"><i class="fa-solid fa-circle-up fa-xl"></i></div>
                 <div class="unaccepted_twist__vote_count">${twist.number_of_votes}</div>
-              
+
               ${ userId ? `<div class="unaccepted_twist__show_form_button">Twist It!</div>` : `<div></div>` }
               ${ isOriginalAuthor && topLevel === twist.depth ?  `<div class="unaccepted_twist__accept_button">Accept</div>` : `<div></div>`}
             </div>
@@ -37,13 +37,20 @@ $(() => {
               <input type="hidden" name="story_id" value="${twist.story_id}" readonly>
               <input type="hidden" name="parent_id" value="${twist.id}" readonly>
               <textarea class="unaccepted_twist__textarea" name="bodytext" cols="30" rows="10" placeholder="Write a new twist..."></textarea>
-              <button class="unaccepted_twist__form__submit_button" type="submit">Submit</button>
+              <div id="twist_on_twist_button_container">
+                <button class="unaccepted_twist__form__submit_button" type="submit">Submit</button>
+              </div>
             </form>
           </div>
           `);
 
           $ut.on('click', '.unaccepted_twist__show_form_button', function() {
-            $(this).parent().next().slideToggle();
+            $(this).parent().next().slideToggle(
+            //   function() {
+            //   if ($(this).is(':visible'))
+            //       $(this).css('display','flex');
+            // }
+            );
           });
 
           $ut.on('submit', '.unaccepted_twist__form', function(e){

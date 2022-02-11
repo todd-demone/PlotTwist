@@ -1,5 +1,6 @@
 $main-background-colour: #FAF36E;
 $feature-colour: #84D6A6;
+$form-background: #ADF6C9;
 
 body {
   display: flex;
@@ -214,11 +215,11 @@ main {
     width: 100%;
 
     textarea {
+      background: $form-background;
       outline: none;
       border: none;
       resize: none;
       width: 100%;
-      opacity: 0.5;
     }
 
   }
@@ -324,11 +325,40 @@ main {
         }
     }
 
-    .unaccepted_twist__form {
-      display: none;
-    }
   }
 }
+
+.unaccepted_twist__form {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+
+
+  textarea {
+    resize: none;
+    outline: none;
+    width: 100%;
+    padding: 20px;
+    background-color: $form-background;
+  }
+
+  #twist_on_twist_button_container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  button {
+    border-radius: 50px;
+    background: darkgray;
+    color: white;
+    border: none;
+    width: 150px;
+    height: 40px;
+    margin-top: 10px;
+    font-size: 1.5em;
+  }
+}
+
 //////////////
 // TWISTS   //
 //////////////
@@ -350,6 +380,3 @@ main {
 .new_story_form_button {
   width: 250px;
 }
-
-
-
