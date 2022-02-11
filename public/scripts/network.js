@@ -69,13 +69,8 @@ const createVote = function(twist_id) {
 
 const getTwistVotes = function(twist_id) {
   return $.ajax({
-<<<<<<< HEAD
-    method: "DELETE",
-    url: `/api/votes/delete/${vote_id}`,
-=======
     method: "GET",
     url: `api/votes/${twist_id}`
->>>>>>> main
   })
 }
 

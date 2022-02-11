@@ -3,19 +3,20 @@ $(() => {
   $pageHeader.append(`
         <div class="box"><img src="media/workingLogo.png" alt="PlotTwist Logo" id="logo"></img></div>
         <div class="box"><button class="new_story_form_button">Create a Story</button></div>
+        <div class="userObject"></div>
         `)
         getUserObject()
         .then(result => {
 
           if (result) {
-            $pageHeader.append(`
+            $('.userObject').html(`
               <div class="logout_button">
                 <h2>Greetings ${result.username}!</h2>
                 <button type="submit" class="logout_button">Logout</button
               </div>`)
 
           } else {
-            $pageHeader.append(`
+            $('.userObject').html(`
               <div class="user-object">
                 <button class="login_button" type="submit">Login</button>
               </div>`)
@@ -26,7 +27,10 @@ $(() => {
             console.log("logging out")
             logout()
               .then(() => {
-                views_manager.show('stories');
+                $('.userObject').empty().html(`
+              <div class="user-object">
+                <button class="login_button" type="submit">Login</button>
+              </div>`)
               })
               .catch(error => {
                 console.error(error.message);
