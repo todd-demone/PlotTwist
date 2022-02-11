@@ -8,7 +8,9 @@ $(() => {
         <form class="new_twist__form" action="/api/twists" method="post" >
           <input type="hidden" name="story_id" value="${story.id}" readonly>
           <input type="hidden" name="parent_id" value=0 readonly>
-          <textarea class="new_twist__bodytext" name="bodytext" cols="30" rows="10" placeholder="Write a new twist..."></textarea>
+          <div class="new_twist__text_container">
+            <textarea class="new_twist__bodytext" name="bodytext" cols="30" rows="10" placeholder="Write a new twist..."></textarea>
+          </div>
           <button class="new_twist__submit_button" type="submit">Submit</button>
         </form>
       </div>
@@ -35,5 +37,5 @@ $(() => {
   };
 
   window.newTwistForm.createNewTwistForm = createNewTwistForm;
-  
+
 });
