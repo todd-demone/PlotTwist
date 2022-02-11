@@ -1,15 +1,15 @@
 $(() => {
-  const $pageHeader = $('#page-header')
+  const $pageHeader = $('.page_header__container')
   $pageHeader.append(`
-        <img src="media/workingLogo.png" alt="PlotTwist Logo" id="logo"></img>
-        <button class="new_story_form_button">Create a Story</button>
+        <div class="box"><img src="media/workingLogo.png" alt="PlotTwist Logo" id="logo"></img></div>
+        <div class="box"><button class="new_story_form_button">Create a Story</button></div>
         `)
         getUserObject()
         .then(result => {
 
 
           if (result) {
-            $pageHeader.append(`<div class="user-object">Greetings ${result.username}!</div>`)
+            $pageHeader.append(`<div class="box"><div class="user-object">Greetings ${result.username}!</div></div>`)
           }
 
           $("body").on('click', "#logo", function() {
