@@ -16,7 +16,7 @@ $(() => {
   };
 
   function createUnacceptedTwist(twist, isOriginalAuthor, topLevel, userId) {
-    
+
         const $ut = $(`
           <div class="depth--${twist.depth} twist unaccepted_twist" style="margin-bottom: 2.5rem; margin-left: calc(${twist.depth} * 20px); background-color: white;">
             <div class=" twist__header unaccepted_twist__header" style="display: flex;">
@@ -40,8 +40,8 @@ $(() => {
               <button class="unaccepted_twist__form__submit_button" type="submit">Submit</button>
             </form>
           </div>
-          `);   
-          
+          `);
+
           $ut.on('click', '.unaccepted_twist__show_form_button', function() {
             $(this).parent().next().slideToggle();
           });
@@ -79,15 +79,23 @@ $(() => {
           });
 
           $ut.on('click', '.unaccepted_twist__vote_icon', function() {
-            createVote(twist.id)
-              // .then(function() {
-              //   const numVotes = getTwistVotes(twist.id)
-              //   $(this).next('.unaccepted_twist__vote_count').text(numVotes);
-              // })
-            const count = $(this).next('.unaccepted_twist__vote_count').text();
-            $(this).next('.unaccepted_twist__vote_count').text(Number(count) + 1);
+            getUserObject()
+              .then(result => {
+                if (result) {
+                  createVote(twist.id)
+                    // //GET VOTE NUMBER FROM DATABASE
+                    // .then(function() {
+                    //   const numVotes = getTwistVotes(twist.id)
+                    //   $(this).next('.unaccepted_twist__vote_count').text(numVotes);
+                    // })
+                  // CHEAT: ADD 1 TO VOTE NUMBER
+                  const count = $(this).next('.unaccepted_twist__vote_count').text();
+                  $(this).next('.unaccepted_twist__vote_count').text(Number(count) + 1);
+
+                }
+              })
           });
-    
+
       return $ut;
     }
 
