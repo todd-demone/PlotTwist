@@ -33,7 +33,6 @@ $(() => {
 
 
     $storyObj.on("click", function() {
-      console.log("storyID:",story.id)
       getStory(story.id)
       .then(function(storyData) {
         console.log("storyData:",storyData)

@@ -12,7 +12,6 @@ $(() => {
 
   $newStoryForm.on('submit', function (event) {
     const data = $newStoryForm.serialize();
-    console.log('my post data', data);
     event.preventDefault();
     createStory(data)
     .then(function() {
