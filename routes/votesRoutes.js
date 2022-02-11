@@ -3,18 +3,6 @@ const router  = express.Router();
 
 module.exports = (dbVotes) => {
 
-  //GET # VOTES FOR TWIST
-  router.get("/:twist_id", (req, res) => {
-    const { twist_id } = req.params;
-
-    dbVotes.getVotes(twist_id)
-      .then(votes => {
-        console.log("votes", votes);
-        return res.send( votes )})
-      .catch(err => res.status(500).json({ error: err.message }));
-  });
-
-
   //VOTE FOR TWIST
   router.post("/:twist_id", (req, res) => {
     const { user_id } = req.session;
@@ -25,28 +13,49 @@ module.exports = (dbVotes) => {
       .catch(err => res.status(500).json({ error: err.message }));
   });
 
+  // TO BE IMPLEMENTED ////////////
+
+  // DELETE VOTE
+  router.delete("/delete/:vote_id", (req, res) => {
+    const { user_id } = req.session;
+    const { vote_id } = req.params;
+    if (!user_id) {
+      return res.status(401).send('You cannot delete a vote that you didn\'t create.')
+    }
+
+    dbVotes.deleteVote(vote_id)
+      .then((num_deleted) => res.json({ num_deleted }))
+      .catch(err => res.status(500).json({ error: err.message }));
+  });
 
   return router;
 
 };
 
-// TO BE IMPLEMENTED?
+// //GET # VOTES FOR TWIST
+  // router.get("/", (req, res) => {
+  //   const { twist_id } = req.params;
+  //   const queryString = `
+  //     SELECT count(votes.*)
+  //     FROM votes
+  //     JOIN contributions ON votes.contribution_id = contributions.id
+  //     WHERE contribution_id = $1;
+  //   `;
+  //   const queryParams = [contribution_id];
+  //   db.query(queryString, queryParams )
+  //     .then(number_votes => {
+  //       const number_votes = result.rows[0];
+  //       res.send({number_votes});
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
 
+//GET USER'S VOTES???
 
-// // DELETE VOTE
-// router.delete("/delete/:vote_id", (req, res) => {
-//   const { user_id } = req.session;
-//   const { vote_id } = req.params;
-//   if (!user_id) {
-//     return res.status(401).send('You cannot delete a vote that you didn\'t create.')
-//   }
-
-//   dbVotes.deleteVote(vote_id)
-//     .then((num_deleted) => res.json({ num_deleted }))
-//     .catch(err => res.status(500).json({ error: err.message }));
-// });
-
-// //GET USER'S VOTES
 // module.exports = (db) => {
 //   router.get("/votes", (req, res) => {
 //     const user_id = req.session.user_id
