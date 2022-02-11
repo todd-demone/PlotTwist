@@ -4,7 +4,7 @@ $(() => {
 
   function createAcceptedTwist(twist) {
     return `
-      <div class="twist accepted_twist" style="background-color: white; margin-bottom: 2.5rem;">
+      <div class="depth--${twist.depth} twist accepted_twist" style="background-color: white; margin-bottom: 2.5rem;">
         <div class="twist__header accepted_twist__header" style="display: flex;">
           <div class="twist__usericon accepted_twist__usericon"><img src="https://i.imgur.com/73hZDYK.png" width="25" height="25"></div>
           <div class="twist__username accepted_twist__username">Posted by ${twist.username}</div>
@@ -17,8 +17,8 @@ $(() => {
 
   function createUnacceptedTwist(twist, isOriginalAuthor, topLevel) {
     const $ut = $(`
-    <div class="twist unaccepted_twist" style="margin-bottom: 2.5rem; margin-left: calc(${twist.depth} * 20px); background-color: white;">
-      <div class="twist__header unaccepted_twist__header" style="display: flex;">
+    <div class="depth--${twist.depth} twist unaccepted_twist" style="margin-bottom: 2.5rem; margin-left: calc(${twist.depth} * 20px); background-color: white;">
+      <div class=" twist__header unaccepted_twist__header" style="display: flex;">
         <div class="twist__usericon unaccepted_twist__usericon"><img src="https://i.imgur.com/73hZDYK.png" width="25" height="25"></div>
         <div class="twist__username unaccepted_twist__username">Posted by ${twist.username}</div>
         <div class="unaccepted_twist__date">${moment(twist.date_created).fromNow()}</div>
