@@ -79,10 +79,10 @@ $(() => {
 
     $ut.on('click', '.unaccepted_twist__vote_icon', function() {
       createVote(twist.id)
-        .then(function() {
-          console.log(twist.number_of_votes)
-
-        })
+        // .then(function() {
+        //   const numVotes = getTwistVotes(twist.id)
+        //   $(this).next('.unaccepted_twist__vote_count').text(numVotes);
+        // })
       const count = $(this).next('.unaccepted_twist__vote_count').text();
       $(this).next('.unaccepted_twist__vote_count').text(Number(count) + 1);
     });

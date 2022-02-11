@@ -1,4 +1,21 @@
 module.exports = (pool) => {
+  //GET VOTES FOR A TWIST
+  const getVotes = (twist_id) => {
+    const queryString = `
+      SELECT count(votes.*)
+      FROM votes
+      JOIN twists ON votes.contribution_id = twists.id
+      WHERE twists_id = $1;
+    `;
+    const queryParams = [twist_id];
+    return pool
+      .query(queryString, queryParams )
+      .then(data => {
+        console.log
+        return data.rows[0]})
+      .catch(error => console.error(error.message));
+  };
+
   //VOTE FOR A TWIST
   const vote = (user_id, twist_id) => {
     queryString = `
@@ -29,6 +46,7 @@ module.exports = (pool) => {
 
   return {
     vote,
-    deleteVote
+    deleteVote,
+    getVotes
   }
 };
