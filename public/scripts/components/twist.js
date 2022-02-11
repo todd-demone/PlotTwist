@@ -15,7 +15,7 @@ $(() => {
     `;
   };
 
-  function createUnacceptedTwist(twist, isOriginalAuthor, topLevel) {
+  function createUnacceptedTwist(twist, isOriginalAuthor, topLevel, userId) {
     
         const $ut = $(`
           <div class="depth--${twist.depth} twist unaccepted_twist" style="margin-bottom: 2.5rem; margin-left: calc(${twist.depth} * 20px); background-color: white;">
@@ -30,7 +30,7 @@ $(() => {
                 <div class="unaccepted_twist__vote_icon"><i class="fa-solid fa-circle-up fa-xl"></i></div>
                 <div class="unaccepted_twist__vote_count">${twist.number_of_votes}</div>
               </div>
-              <button class="unaccepted_twist__show_form_button">Twist It!</button>
+              ${ userId ? `<button class="unaccepted_twist__show_form_button">Twist It!</button>` : `<div></div>` }
               ${ isOriginalAuthor && topLevel === twist.depth ?  `<div class="unaccepted_twist__accept_button">Accept</div>` : `<div></div>`}
             </div>
             <form class="unaccepted_twist__form" style="display: none; margin-left: calc(${twist.depth} * 20px);">

@@ -83,7 +83,7 @@ $(() => {
     } else {
       const topLevel = nestedTwists[0].depth;
       for (const twist of nestedTwists) {
-        const $twistEl = window.twist.createUnacceptedTwist(twist, isOriginalAuthor, topLevel);
+        const $twistEl = window.twist.createUnacceptedTwist(twist, isOriginalAuthor, topLevel, userId);
         addElement($twistEl);
       };
     }
