@@ -1,35 +1,57 @@
+
+INTRO - ND
+
+- can everyone see Todd's screen?
+
+- jQuery and not ejs.  rendered on front end - single page app
+
 PlotTwist is a social app that allows the community to collaborate on writing a short story.
 
-Users can do one of three things.
+Users can do one of three main things.
 1. Create and post an incomplete story
 2. Contribute to another user's story in what we call a "Twist"
 3. Read the stories and twists
 
-1. Let's check out the site!  
+
+-------------
+
+1. Let's check out the site! -ND
 
 - show stories/main page
  - lists the most recent stories
-- if you click on a story you get all the twists
+- if you click on a story you get all the twists (Desert Planet)
 - you can read as much content as you want but to create a story or twist, or to vote on twists, you have to sign-up and login
 
-2. Let's write a twist to an existing story! (login user 2)
+2. Write a story
+
+3. Let's write a twist to an existing story! (login user 2) - ND
 
 - I'm going to log as (CartoonMOnkey: user2 - boy who lived)
-- clicking on a story takes us to the stories page 
+- clicking on a story takes us to the stories page
 - here we can compose a Twist (compose a twist - copy and paste witty text)
+  "The owl turned into Hagrid and professor snape was there too. It turned out that Harry died from his wound after-all.  The End. "
 - [top level twist]
 
-3. The original author can then choose to accept a twist (logout, login as user 3 )
+4. b) Voting on a twist
 
+5. The original author can then choose to accept a twist (logout, login as user 3 ) -TD
 - you click on the story to see the twists
 - if you are the athor you see the accept buttons and you can choose which one you like the best
 - the accepted twist is then merged with the original story and all other threads are eliminated and no longer eligible to be accepted
 
-4. Not only can you add a twist to a story but you can also "twist a twist" (still user 3)
+6. Not only can you add a twist to a story but you can also "twist a twist" (still user 3) -TD
 
 - [go to Tale of Two cities add twist to a level one twist (it was the age of wisdom...)]
 
-5. As an author, once you are satisfied with the story you can mark it completed (logout, login as user 1 and use Tale of Two cities)
+7. As an author, once you are satisfied with the story you can mark it completed (logout, login as user 1 and use Tale of Two cities) -TD
 
 (login)
  - here a logged in user can vote for their favourite twists and write new ones
+
+ RECAP - ND
+
+ - funcationality we would add if more time
+ - what we learned (git)
+ - challenges
+  - database
+  - recursion, reddit
