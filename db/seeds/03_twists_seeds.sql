@@ -11,6 +11,7 @@ INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (4,  3,  0,
 INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (4,  3,  0, 'It was a warm night at Castle Caladan, and the ancient pile of stone that had served the Atreides family as home for twenty-six generations bore that cooled-sweat feeling it acquired before a change in the weather.');
 INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (4,  3,  0, 'Paul lay awake wondering: Whats a gom jabbar? In all the upset during this time of change, the old woman was the strangest thing he had seen.');
 INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (4,  3,  12, 'Dr. Yueh, his teacher, had hinted that the faufreluches class system was not rigidly guarded on Arrakis. The planet sheltered people who lived at the desert edge without caid or bashar to command them. Arrakis—Dune—Desert Planet.');
+INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (1,  3,  1, 'Ron and Hermione floated by in a hot air balloon and saved Mr. Dursely.');
 -- ----------------------------------------------------------------------------------------
 -- NOTE TO DRAFT: seeds have been rearranged to test the getTwists query in db/twistsDb.js
 -- ----------------------------------------------------------------------------------------
