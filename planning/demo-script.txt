@@ -1,11 +1,15 @@
 
 INTRO - ND
 
+[ND]
+
 - can everyone see Todd's screen?
 
 - jQuery and not ejs.  rendered on front end - single page app
 
 PlotTwist is a social app that allows the community to collaborate on writing a short story.
+
+[Todd]
 
 Users can do one of three main things.
 1. Create and post an incomplete story
@@ -15,24 +19,28 @@ Users can do one of three main things.
 
 -------------
 
-1. Let's check out the site! -ND
+1. Let's check out the site! Todd's going to share his screen -ND
 
 - show stories/main page
  - lists the most recent stories
 - if you click on a story you get all the twists (Desert Planet)
 - you can read as much content as you want but to create a story or twist, or to vote on twists, you have to sign-up and login
 
-2. Write a story
+2. Write a story [login user 2 - cartoonMonkey]
+  ["The Hitchhiker's guide to the Universe",
+  "Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small, unregarded yellow sun."]
 
-3. Let's write a twist to an existing story! (login user 2) - ND
+3. Let's write a twist to an existing story! (still user 2) - ND
 
-- I'm going to log as (CartoonMOnkey: user2 - boy who lived)
+- I'm going to log as (CartoonMOnkey: user2 - Boy Who Lived)
 - clicking on a story takes us to the stories page
 - here we can compose a Twist (compose a twist - copy and paste witty text)
-  "The owl turned into Hagrid and professor snape was there too. It turned out that Harry died from his wound after-all.  The End. "
+  ["The owl turned into Hagrid and professor snape was there too. It turned out that Harry died from his wound after-all.  The End. "]
 - [top level twist]
 
-4. b) Voting on a twist
+4. Voting on a twist (still user 2 - Tale to Be Continued)
+
+[TODD]
 
 5. The original author can then choose to accept a twist (logout, login as user 3 ) -TD
 - you click on the story to see the twists

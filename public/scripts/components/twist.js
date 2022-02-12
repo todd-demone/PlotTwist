@@ -4,7 +4,7 @@ $(() => {
 
   function createAcceptedTwist(twist) {
     return `
-      <div class="depth--${twist.depth} twist accepted_twist" style="margin-bottom: 0;">
+      <div class="twist accepted_twist depth--${twist.depth}" style="margin-bottom: 0;">
         <div class="twist__header accepted_twist__header">
           <div class="twist__usericon accepted_twist__usericon"><i class="fa-regular fa-circle-user fa-xl"></i></div>
           <div class="twist__username accepted_twist__username">Posted by ${twist.username}</div>
@@ -18,7 +18,7 @@ $(() => {
   function createUnacceptedTwist(twist, isOriginalAuthor, topLevel, userId) {
 
         const $ut = $(`
-          <div class="depth--${twist.depth} twist unaccepted_twist" style="margin-left: calc(${twist.depth} * 50px);">
+          <div class=" twist unaccepted_twist depth--${twist.depth}" style="margin-left: calc(${twist.depth} * 50px);">
             <div class=" twist__header unaccepted_twist__header">
               <div class="twist__usericon unaccepted_twist__usericon"><i class="fa-regular fa-circle-user fa-xl"></i></div>
               <div class="twist__username unaccepted_twist__username">Posted by ${twist.username}</div>
