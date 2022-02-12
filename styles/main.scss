@@ -411,7 +411,55 @@ main {
       }
 }
 
+// <form class="new_story__form" action="/api/stories" method="post" >
+// <input class="new_story__title" type="text" name="title" placeholder="Title">
+// <textarea class="new_story__bodytext" name="bodytext" placeholder="Text" cols="30" rows="10"></textarea>
+// <button class="new_story__submit_button type="submit">Create</button>
+// </form>
+
+// FORM:
+.new_story__form {
+  font-size: 1.5rem;
+}
+
+.new_story__title {
+  width: 100%;
+  padding: 1rem;
+  margin: 2.5rem 0 1.5rem 0;
+  border-radius: .3rem;
+}
+// TEXTAREA
+.new_story__bodytext {
+  resize: none;
+  outline: none;
+  width: 100%;
+  padding: 1rem;
+  border-radius: .3rem;
+
+  // background-color: #ADF6C9;
+}
+
+.new_story__submit_button {
+  display: block;
+  margin-left: auto;
+  font-family: $header-font-family;
+  border-radius: 50px;
+  background: darkgray;
+  color: white;
+  border: none;
+  width: 150px;
+  height: 40px;
+  margin-top: 10px;
+  // font-size: 1.5em;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      &:hover {
+        background-color: $feature-colour;
+        color: white;
+      }
+}
+
 .new_story_form_button {
   font-family: $header-font-family;
   width: 250px;
+  
 }
