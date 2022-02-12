@@ -18,7 +18,7 @@ $(() => {
   function createUnacceptedTwist(twist, isOriginalAuthor, topLevel, userId) {
 
         const $ut = $(`
-          <div class="depth--${twist.depth} twist unaccepted_twist" style="margin-left: calc(${twist.depth} * 20px);">
+          <div class="depth--${twist.depth} twist unaccepted_twist" style="margin-left: calc(${twist.depth} * 50px);">
             <div class=" twist__header unaccepted_twist__header">
               <div class="twist__usericon unaccepted_twist__usericon"><i class="fa-regular fa-circle-user fa-xl"></i></div>
               <div class="twist__username unaccepted_twist__username">Posted by ${twist.username}</div>
@@ -33,7 +33,7 @@ $(() => {
               ${ userId ? `<div class="unaccepted_twist__show_form_button">Twist It!</div>` : `<div></div>` }
               ${ isOriginalAuthor && topLevel === twist.depth ?  `<div class="unaccepted_twist__accept_button">Accept</div>` : `<div></div>`}
             </div>
-            <form class="unaccepted_twist__form" style="margin-left: calc(${twist.depth} * 20px);">
+            <form class="unaccepted_twist__form" style="margin-left: calc(${twist.depth} * 50px);">
               <input type="hidden" name="story_id" value="${twist.story_id}" readonly>
               <input type="hidden" name="parent_id" value="${twist.id}" readonly>
               <textarea class="unaccepted_twist__textarea" name="bodytext" cols="30" rows="10" placeholder="Write a new twist..."></textarea>
