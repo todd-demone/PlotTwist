@@ -1,13 +1,33 @@
-$main-background-colour: #FAF36E;
 $feature-colour: #84D6A6;
 $form-background: #ADF6C9;
 
+$header-shadow-colour: lightgrey;
+$main-background-colour: white;
+$twist-colour-0:#FAF36E;
+$twist-colour-1:#ed9D0b;
+$twist-colour-2:#f68a06;
+$twist-colour-3:#f4730b;
+$twist-colour-4:#f96209;
+$twist-colour-5:#f94001;
 
-$twist-colour-0: #ffc526;
-$twist-colour-1: #f18b25;
-$twist-colour-2: #ff3864;
-$twist-colour-3: #c96480;
-$twist-colour-4: #05313d;
+// $header-shadow-colour: #f3dd42;
+// $main-background-colour: #FAF36E;
+// $twist-colour-0:         #ed9D0b;
+// $twist-colour-1:         #f68a06;
+// $twist-colour-2:         #f4730b;
+// $twist-colour-3:         #f96209;
+// $twist-colour-4:         #f94001;
+
+//SCHEME 1
+// $header-shadow-colour: #f3dd42;
+// $main-background-colour: #FAF36E;
+// $twist-colour-0: #ffc526;
+// $twist-colour-1: #f18b25;
+// $twist-colour-2: #ff3864;
+// $twist-colour-3: #c96480;
+// $twist-colour-4: #05313d;
+
+
 
 $header-font-family: 'Source Sans Pro';
 $header-height: 200px;
@@ -40,7 +60,7 @@ header {
   z-index: 99;
   width: 100%;
   background: white;
-  box-shadow: 0px 3px 20px #f3dd42;
+  box-shadow: 0px 3px 20px $header-shadow-colour;
 }
 
 .header__container {
@@ -152,6 +172,7 @@ main {
   margin-left: 2rem;
   padding: 2rem;
   background-color: #ffffff;
+  border: thin solid #eee;
   border-radius: .3rem;
 
   .story__header {
