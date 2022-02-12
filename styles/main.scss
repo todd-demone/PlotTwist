@@ -8,7 +8,9 @@ $twist-colour-2: #f18b25;
 $twist-colour-3: #ff3864;
 $twist-colour-4: #c96480;
 $twist-colour-5: #05313d;
+
 $header-font-family: 'Source Sans Pro';
+$header-height: 200px;
 
 body {
   display: flex;
@@ -21,6 +23,10 @@ body {
   line-height: 1.5;
 }
 
+main {
+  margin-top: $header-height;
+}
+
 h2 {
   line-height: 1.2;
 }
@@ -30,12 +36,14 @@ h2 {
 //////////////
 
 header {
+  position: fixed;
   width: 100%;
   background: white;
+  box-shadow: 0px 3px 20px #f3dd42;
 }
 
 .header__container {
-  height: 200px;
+  height: $header-height;
   display: flex;
   justify-content: space-between;
   align-items: center;
