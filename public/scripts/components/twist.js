@@ -4,7 +4,7 @@ $(() => {
 
   function createAcceptedTwist(twist) {
     return `
-      <div class="depth--${twist.depth} twist accepted_twist">
+      <div class="depth--${twist.depth} twist accepted_twist" style="margin-bottom: 0;">
         <div class="twist__header accepted_twist__header">
           <div class="twist__usericon accepted_twist__usericon"><i class="fa-regular fa-circle-user fa-xl"></i></div>
           <div class="twist__username accepted_twist__username">Posted by ${twist.username}</div>

@@ -97,6 +97,7 @@ header {
   color: red;
   font-size: 1.5em;
   margin: 0 0;
+  font-family: $header-font-family;
 }
 
 .logout_button {
@@ -132,12 +133,14 @@ main {
   margin-left: -2rem;
   display: flex;
   flex-wrap: wrap;
+  .story {
+    margin-bottom: 2.5rem;
+  }
 }
 .story {
   flex: 0 0 calc(50% - 2rem);
   font-size: 1rem;
   margin-left: 2rem;
-  margin-bottom: 2.5rem;
   padding: 2rem;
   background-color: #ffffff;
   border-radius: .3rem;
@@ -213,7 +216,7 @@ main {
   .story {
     // max-width: 1052px;
     font-size: 1.5rem;
-    margin-bottom: 2.5rem;
+    // margin-bottom: 2.5rem;
     margin-left: 0;
     padding: 2rem;
     background-color: #ffffff;
@@ -225,7 +228,7 @@ main {
   .new_twist {
     // max-width: 1052px;
     font-size: 1.5rem;
-    margin-bottom: 2.5rem;
+    margin: 2.5rem 0;
   }
   .new_twist__form {
     display: flex;
