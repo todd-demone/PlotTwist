@@ -23,7 +23,7 @@ $(() => {
 
           } else {
             $('.user_object').html(`
-              <div class="login_button">
+              <div class="login_button_box">
                 <button class="login_button" type="submit">Login</button>
               </div>`)
           }
@@ -34,7 +34,7 @@ $(() => {
             logout()
               .then(() => {
                 $('.user_object').empty().html(`
-              <div class="login_button">
+              <div class="login_button_box">
                 <button class="login_button" type="submit">Login</button>
               </div>`)
               })
