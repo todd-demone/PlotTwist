@@ -7,8 +7,10 @@ INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (2,  1,  5,
 INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (2,  4,  6, 'it was the spring of hope, it was the winter of despair, ');
 INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (2,  1,  7, 'we had everything before us, we had nothing before us, ');
 INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (2,  2,  8, 'we were all going direct to Heaven, we were all going direct the other way—in short, ');
-INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (2,  3,  9, 'the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only.');
-
+INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (4,  3,  0, 'In the week before their departure to Arrakis, when all the final scurrying about had reached a nearly unbearable frenzy, an old crone came to visit the mother of the boy, Paul.');
+INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (4,  3,  0, 'It was a warm night at Castle Caladan, and the ancient pile of stone that had served the Atreides family as home for twenty-six generations bore that cooled-sweat feeling it acquired before a change in the weather.');
+INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (4,  3,  0, 'Paul lay awake wondering: Whats a gom jabbar? In all the upset during this time of change, the old woman was the strangest thing he had seen.');
+INSERT INTO twists (story_id, author_id, parent_id, bodytext) VALUES (4,  3,  12, 'Dr. Yueh, his teacher, had hinted that the faufreluches class system was not rigidly guarded on Arrakis. The planet sheltered people who lived at the desert edge without caid or bashar to command them. Arrakis—Dune—Desert Planet.');
 -- ----------------------------------------------------------------------------------------
 -- NOTE TO DRAFT: seeds have been rearranged to test the getTwists query in db/twistsDb.js
 -- ----------------------------------------------------------------------------------------

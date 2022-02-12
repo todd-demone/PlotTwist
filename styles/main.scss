@@ -1,6 +1,7 @@
 $main-background-colour: #FAF36E;
 $feature-colour: #84D6A6;
 $form-background: #ADF6C9;
+$header-font-family: 'Source Sans Pro';
 
 body {
   display: flex;
@@ -53,6 +54,7 @@ header {
 }
 
 .new_story_form_button {
+  font-family: $header-font-family;
   border-radius: 50px;
   background: $feature-colour;
   color: white;
@@ -87,6 +89,7 @@ header {
 }
 
 .logout_button {
+  font-family: $header-font-family;
   border-radius: 50px;
   background: darkgray;
   color: white;
@@ -129,6 +132,7 @@ main {
   border-radius: .3rem;
 
   .story__header {
+    font-family: $header-font-family;
     display: flex;
     margin: 0 0 1rem;
     height: 2.25rem;
@@ -178,6 +182,7 @@ main {
     }
   }
   .story__title {
+    font-family: $header-font-family;
     margin: 0 0 1rem;
     font-size: 1.75rem;
   }
@@ -247,6 +252,7 @@ main {
     border-radius: .3rem;
 
     .twist__header {
+      font-family: $header-font-family;
       display: flex;
       align-items: center;
       margin: 0 0 1.5rem;
@@ -278,6 +284,7 @@ main {
       margin: 0 0 1.5rem;
     }
     .unaccepted_twist__footer {
+      font-family: $header-font-family;
       display: flex;
       justify-content: start;
       // margin: 0 0 2rem;
@@ -312,6 +319,7 @@ main {
         justify-content: center;
       }
       .unaccepted_twist__show_form_button {
+        font-family: $header-font-family;
         padding: .5rem;
         margin-left: 1rem;
         display: flex;
@@ -325,6 +333,7 @@ main {
         }
       }
       .unaccepted_twist__accept_button {
+        font-family: $header-font-family;
         padding: .5rem;
         display: flex;
         flex-direction: column;
@@ -344,6 +353,7 @@ main {
     display: none;
     flex-direction: column;
     align-items: flex-end;
+    margin-top: 1.5rem;
 
 
   textarea {
@@ -360,6 +370,7 @@ main {
   }
 
   button {
+    font-family: $header-font-family;
     border-radius: 50px;
     background: darkgray;
     color: white;
@@ -367,7 +378,12 @@ main {
     width: 150px;
     height: 40px;
     margin-top: 10px;
-    font-size: 1.5em;
+    // font-size: 1.5em;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    &:hover {
+      background-color: $feature-colour;
+      color: white;
+    }
   }
 }
 
@@ -379,14 +395,15 @@ main {
 
 
 .new_twist__submit_button {
+  font-family: $header-font-family;
   border-radius: 50px;
   background: darkgray;
   color: white;
   border: none;
   width: 150px;
-  height: 3.75rem;
+  height: 40px;
   margin-top: 10px;
-  font-size: 1.5em;
+  // font-size: 1.5em;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
       &:hover {
         background-color: $feature-colour;
@@ -395,5 +412,6 @@ main {
 }
 
 .new_story_form_button {
+  font-family: $header-font-family;
   width: 250px;
 }

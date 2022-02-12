@@ -56,3 +56,7 @@ One, two! One, two! And through and through
       The vorpal blade went snicker-snack!
 He left it dead, and with its head
       He went galumphing back.');
+
+INSERT INTO stories (author_id, title, bodytext) VALUES (
+  1, 'Desert Planet', 
+  'A beginning is the time for taking the most delicate care that the balances are correct. This every sister of the Bene Gesserit knows. To begin your study of the life of MuadDib, then, take care that you first place him in his time: born in the 57th year of the Padishah Emperor, Shaddam IV. And take the most special care that you locate MuadDib in his place: the planet Arrakis. Do not be deceived by the fact that he was born on Caladan and lived his first fifteen years there. Arrakis, the planet known as Dune, is forever his place.');
