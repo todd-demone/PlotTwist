@@ -1,6 +1,13 @@
 $main-background-colour: #FAF36E;
 $feature-colour: #84D6A6;
 $form-background: #ADF6C9;
+
+
+$twist-colour-1: #ffc526;
+$twist-colour-2: #f18b25;
+$twist-colour-3: #ff3864;
+$twist-colour-4: #c96480;
+$twist-colour-5: #05313d;
 $header-font-family: 'Source Sans Pro';
 
 body {
@@ -461,5 +468,5 @@ main {
 .new_story_form_button {
   font-family: $header-font-family;
   width: 250px;
-  
+
 }

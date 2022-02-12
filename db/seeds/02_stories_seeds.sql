@@ -58,5 +58,39 @@ He left it dead, and with its head
       He went galumphing back.');
 
 INSERT INTO stories (author_id, title, bodytext) VALUES (
-  1, 'Desert Planet', 
+  1, 'Desert Planet',
   'A beginning is the time for taking the most delicate care that the balances are correct. This every sister of the Bene Gesserit knows. To begin your study of the life of MuadDib, then, take care that you first place him in his time: born in the 57th year of the Padishah Emperor, Shaddam IV. And take the most special care that you locate MuadDib in his place: the planet Arrakis. Do not be deceived by the fact that he was born on Caladan and lived his first fifteen years there. Arrakis, the planet known as Dune, is forever his place.');
+
+INSERT INTO stories (author_id, title, bodytext)
+VALUES (4, 'Pride and Prej.', 'It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.');
+
+INSERT INTO stories (author_id, title, bodytext)
+VALUES (2,'Pink Eggs and Ham','I am Sam.
+Sam I am.
+That Sam-I-am!
+That Sam-I-am!
+I do not like
+That Sam-I-am!
+Do you like
+Pink eggs and ham?
+I do not like them,
+Sam-I-am.
+I do not like
+Pink eggs and ham.
+Would you like them
+Here or there?
+I would not like them
+Here or there.
+I would not like them
+Anywhere.
+I do not like
+Pink eggs and ham.
+I do not like them,
+Sam-I-am.
+Would you like them
+In a house?
+Would you like them
+With a mouse? ');
+
+INSERT INTO stories (author_id, title, bodytext)
+VALUES (2,'A Couple Years of Solitude','Many years later, as he faced the firing squad, Colonel Aureliano Buendía was to remember that distant afternoon when his father took him to discover ice.');
